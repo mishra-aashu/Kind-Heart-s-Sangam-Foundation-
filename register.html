@@ -1,0 +1,214 @@
+<!-- CRITICAL: ADMIN PERMISSION REQUIRED BEFORE EDITING THIS FILE
+
+     This file contains the registration form for Kind Heart's Sangam Foundation.
+     It includes form fields, validation, and user input handling for new donor registrations.
+
+     ANY CHANGES TO THIS FILE MUST BE APPROVED BY AN ADMINISTRATOR BEFORE IMPLEMENTATION.
+
+     Contact admin before modifying:
+     - Form structure and fields
+     - Input validation rules
+     - Form submission logic
+     - User interface elements
+     - Integration with JavaScript/app.js
+
+     Unauthorized edits may break the registration process and data collection.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Kind Heart's Sangam Foundation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <a href="/" class="header__logo">
+                    <img src="logo.svg" alt="Kind Heart's Sangam Foundation Logo" class="header__logo-img">
+                    <span class="header__logo-text">Kind Heart's Sangam</span>
+                </a>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html#home" class="nav__link">Home</a></li>
+                        <li class="nav__item"><a href="index.html#about" class="nav__link">About</a></li>
+                        <li class="nav__item"><a href="index.html#how-it-works" class="nav__link">How It Works</a></li>
+                        <li class="nav__item"><a href="index.html#contact" class="nav__link">Contact</a></li>
+                        <li class="nav__item"><a href="register.html" class="nav__link nav__link--cta">Register</a></li>
+                    </ul>
+                </nav>
+                <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navList">
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1 class="section__title">Register as a Food Donor</h1>
+                <p class="section__text">Thank you for your interest in joining our cause. Please fill out the form below.</p>
+                
+                <form id="registration-form" class="form" novalidate>
+                    <div class="form__group">
+                        <label for="orgType" class="form__label">Organization Type *</label>
+                        <select id="orgType" name="orgType" class="form__input" required>
+                            <option value="">Select Type</option>
+                            <option value="hotel">Hotel</option>
+                            <option value="restaurant">Restaurant</option>
+                            <option value="kitchen">Community Kitchen</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="orgName" class="form__label">Organization Name *</label>
+                        <input type="text" id="orgName" name="orgName" class="form__input" required>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="contactPerson" class="form__label">Contact Person *</label>
+                        <input type="text" id="contactPerson" name="contactPerson" class="form__input" required>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="phone" class="form__label">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" class="form__input" required pattern="[0-9]{10}">
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="email" class="form__label">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form__input" required>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="address" class="form__label">Full Address *</label>
+                        <textarea id="address" name="address" class="form__input" rows="3" required></textarea>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="city" class="form__label">City *</label>
+                        <input type="text" id="city" name="city" class="form__input" required>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="pincode" class="form__label">Pincode *</label>
+                        <input type="text" id="pincode" name="pincode" class="form__input" required pattern="[0-9]{6}">
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <p class="form__label">Preferred Pickup Days *</p>
+                        <div class="form__checkbox-group">
+                            <label><input type="checkbox" name="pickupDays" value="Monday"> Mon</label>
+                            <label><input type="checkbox" name="pickupDays" value="Tuesday"> Tue</label>
+                            <label><input type="checkbox" name="pickupDays" value="Wednesday"> Wed</label>
+                            <label><input type="checkbox" name="pickupDays" value="Thursday"> Thu</label>
+                            <label><input type="checkbox" name="pickupDays" value="Friday"> Fri</label>
+                            <label><input type="checkbox" name="pickupDays" value="Saturday"> Sat</label>
+                            <label><input type="checkbox" name="pickupDays" value="Sunday"> Sun</label>
+                        </div>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="pickupTime" class="form__label">Preferred Pickup Time Slot *</label>
+                        <input type="text" id="pickupTime" name="pickupTime" class="form__input" required placeholder="e.g., 4 PM - 6 PM">
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="foodCapacity" class="form__label">Average Food Capacity (per day) *</label>
+                        <input type="text" id="foodCapacity" name="foodCapacity" class="form__input" required placeholder="e.g., 20 meals or 5 kg">
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <p class="form__label">Food Type *</p>
+                        <div class="form__radio-group">
+                            <label><input type="radio" name="foodType" value="Vegetarian" required> Vegetarian</label>
+                            <label><input type="radio" name="foodType" value="Non-Vegetarian"> Non-Vegetarian</label>
+                            <label><input type="radio" name="foodType" value="Both"> Both</label>
+                        </div>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="certificateLink" class="form__label">Food Safety Certificate Link</label>
+                        <input type="url" id="certificateLink" name="certificateLink" class="form__input">
+                        <p class="form__helper-text">Please upload your certificate (PDF/JPG) to a service like Google Drive and paste the shareable link here.</p>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group form__group--honeypot" aria-hidden="true">
+                        <label for="website">Please leave this field empty</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="form__group">
+                        <label class="form__checkbox-label">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            I agree to the Terms and Conditions of Kind Heart's Sangam Foundation.
+                        </label>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="button button--primary form__submit">
+                        <span class="button__text">Submit Registration</span>
+                        <span class="button__spinner"></span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Kind Heart's Sangam Foundation. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast" role="alert">
+        <p class="toast__message"></p>
+    </div>
+
+    <script>
+        // Debug logging for CSS and JS loading
+        console.log('Register HTML loaded successfully');
+        console.log('Current URL:', window.location.href);
+        console.log('CSS file should be at:', window.location.href.replace('register.html', 'styles.css'));
+        console.log('JS file should be at:', window.location.href.replace('register.html', 'app.js'));
+        console.log('Logo file should be at:', window.location.href.replace('register.html', 'logo.svg'));
+
+        // Check if CSS is loaded
+        const styleSheets = document.styleSheets;
+        console.log('Number of loaded stylesheets:', styleSheets.length);
+        for (let i = 0; i < styleSheets.length; i++) {
+            console.log('Stylesheet', i, ':', styleSheets[i].href);
+        }
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM Content Loaded - starting form initialization');
+            initializeForm();
+        });
+    </script>
+</body>
+</html>
