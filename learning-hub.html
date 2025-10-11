@@ -1,0 +1,344 @@
+<!-- CRITICAL: ADMIN PERMISSION REQUIRED BEFORE EDITING THIS FILE
+
+    This file contains the Impact Learning Hub - Educational Content Platform
+    for Kind Heart's Sangam Foundation.
+
+    ANY CHANGES TO THIS FILE MUST BE APPROVED BY AN ADMINISTRATOR BEFORE IMPLEMENTATION.
+
+    Contact admin before modifying:
+    - Platform structure and navigation
+    - Learning modules and content sections
+    - User interface elements
+    - Integration with existing website
+
+    Unauthorized edits may affect learning experience and functionality.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Impact Learning Hub - Kind Heart's Sangam Foundation</title>
+   <link rel="stylesheet" href="learning-hub.css">
+   <style>
+       /* Volunteer authentication styles */
+       .nav__item--volunteer {
+           display: flex;
+           align-items: center;
+           gap: 1rem;
+       }
+
+       .volunteer-name {
+           font-weight: 600;
+           color: var(--primary-color);
+           font-size: 0.9rem;
+       }
+
+       .volunteer-logout-btn {
+           background: none;
+           border: none;
+           color: #dc3545;
+           cursor: pointer;
+           padding: 0.5rem;
+           border-radius: 4px;
+           transition: background-color 0.3s ease;
+       }
+
+       .volunteer-logout-btn:hover {
+           background-color: #ffebee;
+       }
+
+       .login-link {
+           background: var(--primary-color);
+           color: white;
+           padding: 0.5rem 1rem;
+           border-radius: 4px;
+           text-decoration: none;
+           font-weight: 500;
+           transition: background-color 0.3s ease;
+       }
+
+       .login-link:hover {
+           background: #ff6b35;
+       }
+
+       /* Disabled module buttons */
+       .module-button:disabled {
+           background: #ccc !important;
+           cursor: not-allowed !important;
+           opacity: 0.6;
+       }
+
+       /* Responsive volunteer info */
+       @media (max-width: 768px) {
+           .nav__item--volunteer {
+               flex-direction: column;
+               gap: 0.5rem;
+           }
+
+           .volunteer-name {
+               font-size: 0.8rem;
+           }
+       }
+   </style>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="icon" type="image/svg+xml" href="../logo.svg">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+   <!-- Header -->
+   <header class="header">
+       <div class="container">
+           <div class="header__content">
+               <a href="../index.html" class="header__logo">
+                   <img src="../logo.svg" alt="Kind Heart's Sangam Foundation Logo" class="header__logo-img">
+                   <span class="header__logo-text">KIND HEART'S</span>
+               </a>
+               <nav class="nav">
+                   <ul class="nav__list" id="navList">
+                       <li class="nav__item"><a href="../index.html" class="nav__link">🏠 Main Site</a></li>
+                       <li class="nav__item"><a href="#modules" class="nav__link">📚 Learning Modules</a></li>
+                       <li class="nav__item"><a href="#progress" class="nav__link">📊 My Progress</a></li>
+                       <li class="nav__item nav__item--volunteer">
+                           <span id="volunteer-info" style="display: none;">
+                               <span class="volunteer-name" id="volunteer-name"></span>
+                               <button id="volunteer-logout" class="volunteer-logout-btn" title="Logout">
+                                   <i class="fas fa-sign-out-alt"></i>
+                               </button>
+                           </span>
+                           <div id="login-prompt" style="display: none;">
+                               <a href="../volunteer-login.html" class="login-link">🔐 Login</a>
+                           </div>
+                       </li>
+                       <li class="nav__item nav__item--controls">
+                           <button id="language-toggle" class="language-toggle" title="Switch Language" aria-label="Switch language">
+                               <span class="language-toggle__text">हिन्दी</span>
+                           </button>
+                       </li>
+                   </ul>
+               </nav>
+               <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navList" onclick="toggleMobileMenu()">
+                   <span class="hamburger__line"></span>
+                   <span class="hamburger__line"></span>
+                   <span class="hamburger__line"></span>
+               </button>
+           </div>
+       </div>
+   </header>
+
+   <!-- Hero Section -->
+   <section id="home" class="hero-section">
+       <div class="container">
+           <div class="hero-content">
+               <h1 class="hero-title">Impact Learning Hub</h1>
+               <p class="hero-subtitle">Empowering communities through nutrition education, food waste reduction, and volunteer development</p>
+               <button class="cta-button" onclick="scrollToModules()">Start Learning Journey</button>
+           </div>
+       </div>
+   </section>
+
+   <!-- Learning Modules Section -->
+   <section id="modules" class="modules-section">
+       <div class="container">
+           <h2 class="section-title">Our Learning Modules</h2>
+           <p class="section-subtitle">Choose from our comprehensive learning pathways designed for community impact</p>
+
+           <div class="modules-grid">
+               <!-- Module 1: Community Nutrition Education & Health Promotion -->
+               <div class="module-card" data-module="nutrition">
+                   <div class="module-icon">
+                       <i class="fas fa-seedling"></i>
+                   </div>
+                   <h3 class="module-title">Community Nutrition Education & Health Promotion</h3>
+                   <p class="module-description">Develop expertise in designing and implementing evidence-based nutrition education programs that address malnutrition, promote healthy eating habits, and create sustainable behavior change in diverse community settings.</p>
+                   <div class="module-meta">
+                       <span class="module-duration"><i class="fas fa-clock"></i> 2 hours</span>
+                       <span class="module-lessons"><i class="fas fa-book"></i> 4 lessons</span>
+                   </div>
+                   <div class="module-stats">
+                       <div class="stat-item">
+                           <span class="stat-number">733M</span>
+                           <span class="stat-label">people face hunger globally</span>
+                       </div>
+                       <div class="stat-item">
+                           <span class="stat-number">19%</span>
+                           <span class="stat-label">global food production wasted</span>
+                       </div>
+                   </div>
+                   <div class="module-progress">
+                       <div class="progress-bar">
+                           <div class="progress-fill" style="width: 0%"></div>
+                       </div>
+                       <span class="progress-text">0% Complete</span>
+                   </div>
+                   <button class="module-button" onclick="openModule('nutrition')">Start Module 1 <i class="fas fa-external-link-alt"></i></button>
+               </div>
+
+               <!-- Module 2: Food Waste Reduction & Sustainable Food Systems -->
+               <div class="module-card" data-module="food-waste">
+                   <div class="module-icon">
+                       <i class="fas fa-recycle"></i>
+                   </div>
+                   <h3 class="module-title">Food Waste Reduction & Sustainable Food Systems</h3>
+                   <p class="module-description">Master comprehensive strategies to combat food waste across the supply chain, implement community-based food recovery programs, and promote sustainable consumption practices that address both environmental and social challenges.</p>
+                   <div class="module-meta">
+                       <span class="module-duration"><i class="fas fa-clock"></i> 2 hours</span>
+                       <span class="module-lessons"><i class="fas fa-book"></i> 4 lessons</span>
+                   </div>
+                   <div class="module-stats">
+                       <div class="stat-item">
+                           <span class="stat-number">1.05B</span>
+                           <span class="stat-label">tonnes wasted annually</span>
+                       </div>
+                       <div class="stat-item">
+                           <span class="stat-number">$1T</span>
+                           <span class="stat-label">annual economic loss</span>
+                       </div>
+                   </div>
+                   <div class="module-progress">
+                       <div class="progress-bar">
+                           <div class="progress-fill" style="width: 0%"></div>
+                       </div>
+                       <span class="progress-text">0% Complete</span>
+                   </div>
+                   <button class="module-button" onclick="openModule('food-waste')">Start Module 2 <i class="fas fa-external-link-alt"></i></button>
+               </div>
+
+               <!-- Module 3: Volunteer Development & Leadership Training -->
+               <div class="module-card" data-module="volunteer">
+                   <div class="module-icon">
+                       <i class="fas fa-hands-helping"></i>
+                   </div>
+                   <h3 class="module-title">Volunteer Development & Leadership Training</h3>
+                   <p class="module-description">Build comprehensive volunteer management systems that recruit, train, and retain effective community leaders while creating sustainable organizational structures that maximize volunteer impact and engagement.</p>
+                   <div class="module-meta">
+                       <span class="module-duration"><i class="fas fa-clock"></i> 2 hours</span>
+                       <span class="module-lessons"><i class="fas fa-book"></i> 4 lessons</span>
+                   </div>
+                   <div class="module-stats">
+                       <div class="stat-item">
+                           <span class="stat-number">40%</span>
+                           <span class="stat-label">engagement increase</span>
+                       </div>
+                       <div class="stat-item">
+                           <span class="stat-number">390+</span>
+                           <span class="stat-label">volunteers trained</span>
+                       </div>
+                   </div>
+                   <div class="module-progress">
+                       <div class="progress-bar">
+                           <div class="progress-fill" style="width: 0%"></div>
+                       </div>
+                       <span class="progress-text">0% Complete</span>
+                   </div>
+                   <button class="module-button" onclick="openModule('volunteer')">Start Module 3 <i class="fas fa-external-link-alt"></i></button>
+               </div>
+
+               <!-- Module 4: Program Integration & Community Impact Measurement -->
+               <div class="module-card" data-module="integration">
+                   <div class="module-icon">
+                       <i class="fas fa-puzzle-piece"></i>
+                   </div>
+                   <h3 class="module-title">Program Integration & Community Impact Measurement</h3>
+                   <p class="module-description">Synthesize knowledge from all modules to create integrated community programs that address nutrition, food waste, and volunteer development simultaneously while establishing robust monitoring and evaluation systems for sustainable impact.</p>
+                   <div class="module-meta">
+                       <span class="module-duration"><i class="fas fa-clock"></i> 2 hours</span>
+                       <span class="module-lessons"><i class="fas fa-book"></i> 3 lessons</span>
+                   </div>
+                   <div class="module-stats">
+                       <div class="stat-item">
+                           <span class="stat-number">67%</span>
+                           <span class="stat-label">effectiveness improvement</span>
+                       </div>
+                       <div class="stat-item">
+                           <span class="stat-number">80%</span>
+                           <span class="stat-label">participant confidence</span>
+                       </div>
+                   </div>
+                   <div class="module-progress">
+                       <div class="progress-bar">
+                           <div class="progress-fill" style="width: 0%"></div>
+                       </div>
+                       <span class="progress-text">0% Complete</span>
+                   </div>
+                   <button class="module-button" onclick="openModule('integration')">Start Module 4 <i class="fas fa-external-link-alt"></i></button>
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <!-- Progress Dashboard Section -->
+   <section id="progress" class="progress-section">
+       <div class="container">
+           <h2 class="section-title">Your Learning Progress</h2>
+           <div class="progress-dashboard">
+               <div class="overall-progress">
+                   <h3>Overall Progress</h3>
+                   <div class="circular-progress">
+                       <svg class="progress-ring" width="200" height="200">
+                           <circle class="progress-ring-circle-bg" stroke="#e6e6e6" stroke-width="12" fill="transparent" r="90" cx="100" cy="100"/>
+                           <circle class="progress-ring-circle" stroke="#4CAF50" stroke-width="12" fill="transparent" r="90" cx="100" cy="100" stroke-linecap="round"/>
+                       </svg>
+                       <div class="progress-text">
+                           <span class="percentage">0%</span>
+                           <span class="label">Complete</span>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="detailed-progress">
+                   <div class="progress-item">
+                       <span class="progress-label">Community Nutrition Education & Health Promotion (4 lessons)</span>
+                       <div class="progress-track">
+                           <div class="progress-fill" style="width: 0%"></div>
+                       </div>
+                       <span class="progress-percent">0%</span>
+                   </div>
+                   <div class="progress-item">
+                       <span class="progress-label">Food Waste Reduction & Sustainable Food Systems (4 lessons)</span>
+                       <div class="progress-track">
+                           <div class="progress-fill" style="width: 0%"></div>
+                       </div>
+                       <span class="progress-percent">0%</span>
+                   </div>
+                   <div class="progress-item">
+                       <span class="progress-label">Volunteer Development & Leadership Training (4 lessons)</span>
+                       <div class="progress-track">
+                           <div class="progress-fill" style="width: 0%"></div>
+                       </div>
+                       <span class="progress-percent">0%</span>
+                   </div>
+                   <div class="progress-item">
+                       <span class="progress-label">Program Integration & Community Impact Measurement (3 lessons)</span>
+                       <div class="progress-track">
+                           <div class="progress-fill" style="width: 0%"></div>
+                       </div>
+                       <span class="progress-percent">0%</span>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+
+
+   <!-- Footer -->
+   <footer class="footer">
+       <div class="container">
+           <p>&copy; <span id="year"></span> Kind Heart's Sangam Foundation. All Rights Reserved.</p>
+           <p class="footer-mission">Built with ❤️ for communities fighting hunger and food waste</p>
+       </div>
+   </footer>
+
+   <script src="../language.js"></script>
+   <script type="module">
+       // Import Supabase client for volunteer authentication
+       import supabase from '../supabase-client.js';
+
+       // Make supabase available globally for the learning hub
+       window.supabase = supabase;
+   </script>
+   <script src="learning-hub.js"></script>
+</body>
+</html>

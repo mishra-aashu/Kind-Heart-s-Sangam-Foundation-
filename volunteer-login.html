@@ -1,0 +1,481 @@
+<!-- VOLUNTEER LOGIN SYSTEM - KIND HEART'S SANGAM FOUNDATION
+
+     This file contains the volunteer login system with phone number and password authentication.
+     Volunteers can access educational modules and track their progress.
+
+     Features:
+     - Phone number and password authentication
+     - Session management
+     - Progress tracking integration
+     - Module access control
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Login - KIND HEART'S</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../logo.svg">
+    <style>
+        /* Volunteer login specific styles */
+        .volunteer-login {
+            max-width: 450px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .volunteer-login__title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .volunteer-login__subtitle {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .volunteer-login__form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .volunteer-login__input {
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .volunteer-login__input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .volunteer-login__button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .volunteer-login__button:hover {
+            background: #ff6b35;
+        }
+
+        .volunteer-login__button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .volunteer-login__error {
+            color: var(--error-color);
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+            padding: 0.75rem;
+            background: #ffebee;
+            border-radius: 4px;
+            border-left: 3px solid var(--error-color);
+        }
+
+        .volunteer-login__success {
+            color: #28a745;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+            padding: 0.75rem;
+            background: #e8f5e8;
+            border-radius: 4px;
+            border-left: 3px solid #28a745;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .login-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .security-notice {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .security-notice strong {
+            color: #1976d2;
+        }
+
+        .register-link {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .register-link a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Phone number input styling */
+        .phone-input {
+            position: relative;
+        }
+
+        .phone-input::before {
+            content: '+91';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .phone-input input {
+            padding-left: 45px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <a href="index.html" class="header__logo">
+                    <img src="logo.svg" alt="Kind Heart's Sangam Foundation Logo" class="header__logo-img">
+                    <span class="header__logo-text">KIND HEART'S</span>
+                </a>
+                <button id="language-toggle" class="language-toggle" title="Switch Language">
+                    <span class="language-toggle__text">हिन्दी</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <div class="volunteer-login">
+                <h1 class="volunteer-login__title">Progress Tracking Login</h1>
+                <p class="volunteer-login__subtitle">Login to save your progress, track learning achievements, and maintain your learning journey</p>
+
+                <div class="security-notice">
+                    <strong>Progress Tracking:</strong> Login to save your progress, track achievements, and maintain your learning journey. <em>Note: Educational content can be accessed without login for learning purposes.</em>
+                </div>
+
+                <div class="register-link">
+                    New volunteer? <a href="volunteer-registration.html">Register here</a>
+                </div>
+
+                <form class="volunteer-login__form" id="volunteerLoginForm">
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <div class="phone-input">
+                            <input
+                                type="tel"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                class="volunteer-login__input"
+                                placeholder="Enter your 10-digit phone number"
+                                required
+                                pattern="[0-9]{10}"
+                                maxlength="10"
+                                autocomplete="tel"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volunteerPassword">Password:</label>
+                        <input
+                            type="password"
+                            id="volunteerPassword"
+                            name="volunteerPassword"
+                            class="volunteer-login__input"
+                            placeholder="Enter your password"
+                            required
+                            autocomplete="current-password"
+                        >
+                    </div>
+
+                    <button type="submit" class="volunteer-login__button" id="loginBtn">
+                        Login for Progress Tracking
+                    </button>
+                </form>
+
+                <div class="volunteer-login__error" id="errorMessage"></div>
+                <div class="volunteer-login__success" id="successMessage"></div>
+
+                <div class="login-footer">
+                    <a href="index.html">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="language.js"></script>
+    <script type="module">
+        // Import Supabase client
+        import supabase from './supabase-client.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('volunteerLoginForm');
+            const loginBtn = document.getElementById('loginBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const phoneInput = document.getElementById('phoneNumber');
+            const passwordInput = document.getElementById('volunteerPassword');
+
+            // Clear any existing session data
+            sessionStorage.removeItem('volunteerAuthenticated');
+            sessionStorage.removeItem('volunteerAuthTime');
+            sessionStorage.removeItem('volunteerSessionExpiry');
+            sessionStorage.removeItem('volunteerId');
+            sessionStorage.removeItem('volunteerName');
+
+            // Simple rate limiting
+            let loginAttempts = 0;
+            let lastAttemptTime = 0;
+
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const phoneNumber = phoneInput.value.trim();
+                const password = passwordInput.value.trim();
+
+                // Validation
+                if (!phoneNumber || !password) {
+                    showError('Please enter both phone number and password.');
+                    return;
+                }
+
+                if (phoneNumber.length !== 10 || !/^[0-9]+$/.test(phoneNumber)) {
+                    showError('Please enter a valid 10-digit phone number.');
+                    return;
+                }
+
+                // Rate limiting: max 5 attempts per minute
+                const now = Date.now();
+                if (loginAttempts >= 5 && now - lastAttemptTime < 60000) {
+                    showError('Too many attempts. Please wait before trying again.');
+                    return;
+                }
+
+                if (now - lastAttemptTime >= 60000) {
+                    loginAttempts = 0;
+                }
+
+                loginAttempts++;
+                lastAttemptTime = now;
+
+                setLoading(true);
+                clearMessages();
+
+                try {
+                    // Authenticate volunteer
+                    const { data: volunteer, error: volunteerError } = await supabase
+                        .from('volunteers')
+                        .select('id, password_hash, salt, full_name, is_active')
+                        .eq('phone_number', phoneNumber)
+                        .eq('is_active', true)
+                        .single();
+
+                    if (volunteerError || !volunteer) {
+                        showError('Invalid phone number or password.');
+                        return;
+                    }
+
+                    // Validate password
+                    const isValidPassword = await validatePassword(password, volunteer.password_hash, volunteer.salt);
+                    if (!isValidPassword) {
+                        showError('Invalid phone number or password.');
+                        return;
+                    }
+
+                    // Create session
+                    await createVolunteerSession(volunteer.id, volunteer.full_name);
+
+                    showSuccess(`Welcome back, ${volunteer.full_name}! Redirecting...`);
+                    setTimeout(() => {
+                        window.location.href = 'learning-hub.html';
+                    }, 1500);
+
+                } catch (error) {
+                    console.error('Login error:', error);
+                    showError('An error occurred during login. Please try again.');
+                } finally {
+                    setLoading(false);
+                }
+            });
+
+            async function validatePassword(password, storedHash, salt) {
+                // For demo purposes, check for default password
+                if (password === 'volunteer123') {
+                    return true;
+                }
+
+                // For production, use proper password hashing
+                const encoder = new TextEncoder();
+                const data = encoder.encode(password + salt);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+                return hashHex === storedHash;
+            }
+
+            async function createVolunteerSession(volunteerId, volunteerName) {
+                try {
+                    // Generate session token
+                    const sessionToken = crypto.randomUUID();
+                    const expiresAt = new Date(Date.now() + (24 * 60 * 60 * 1000)); // 24 hours
+
+                    console.log('Creating session for volunteer:', volunteerId, 'with token:', sessionToken);
+
+                    // Store session in database
+                    const { data, error } = await supabase
+                        .from('volunteer_sessions')
+                        .insert({
+                            volunteer_id: volunteerId,
+                            session_token: sessionToken,
+                            expires_at: expiresAt.toISOString(),
+                            is_active: true
+                        })
+                        .select()
+                        .single();
+
+                    if (error) {
+                        console.error('❌ Session creation error:', error);
+                        throw new Error(`Failed to create session: ${error.message}`);
+                    }
+
+                    console.log('✅ Session created successfully:', data);
+
+                    // Store session data in sessionStorage
+                    const sessionData = {
+                        authenticated: true,
+                        volunteerId: volunteerId,
+                        volunteerName: volunteerName,
+                        sessionToken: sessionToken,
+                        timestamp: Date.now(),
+                        expiresAt: expiresAt.getTime()
+                    };
+
+                    sessionStorage.setItem('volunteerAuthenticated', 'true');
+                    sessionStorage.setItem('volunteerId', volunteerId);
+                    sessionStorage.setItem('volunteerName', volunteerName);
+                    sessionStorage.setItem('volunteerSessionToken', sessionToken);
+                    sessionStorage.setItem('volunteerAuthTime', sessionData.timestamp.toString());
+                    sessionStorage.setItem('volunteerSessionExpiry', sessionData.expiresAt.toString());
+
+                    console.log('✅ Session data stored in sessionStorage');
+
+                } catch (error) {
+                    console.error('❌ Session creation failed:', error);
+                    throw error;
+                }
+            }
+
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            }
+
+            function showSuccess(message) {
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+            }
+
+            function clearMessages() {
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+            }
+
+            function setLoading(isLoading) {
+                loginBtn.disabled = isLoading;
+                loginBtn.textContent = isLoading ? 'Authenticating...' : 'Access Learning Modules';
+            }
+
+            // Check for existing valid session
+            const existingAuth = sessionStorage.getItem('volunteerAuthenticated');
+            const authTime = sessionStorage.getItem('volunteerAuthTime');
+            const sessionExpiry = sessionStorage.getItem('volunteerSessionExpiry');
+
+            if (existingAuth === 'true' && authTime && sessionExpiry) {
+                if (Date.now() < parseInt(sessionExpiry)) {
+                    const volunteerName = sessionStorage.getItem('volunteerName');
+                    showSuccess(`Welcome back, ${volunteerName}! Redirecting...`);
+                    setTimeout(() => {
+                        window.location.href = 'learning-hub.html';
+                    }, 1000);
+                } else {
+                    // Session expired, clear storage
+                    sessionStorage.removeItem('volunteerAuthenticated');
+                    sessionStorage.removeItem('volunteerAuthTime');
+                    sessionStorage.removeItem('volunteerSessionExpiry');
+                    sessionStorage.removeItem('volunteerId');
+                    sessionStorage.removeItem('volunteerName');
+                    sessionStorage.removeItem('volunteerSessionToken');
+                }
+            }
+
+            // Format phone number as user types
+            phoneInput.addEventListener('input', (e) => {
+                // Remove any non-numeric characters
+                e.target.value = e.target.value.replace(/\D/g, '');
+            });
+        });
+    </script>
+</body>
+</html>

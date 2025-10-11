@@ -1,0 +1,382 @@
+<!-- CRITICAL: ADMIN PERMISSION REQUIRED BEFORE EDITING THIS FILE
+
+     This file contains the admin login system for Kind Heart's Sangam Foundation.
+     It includes secure authentication and password management functionality.
+
+     ANY CHANGES TO THIS FILE MUST BE APPROVED BY AN ADMINISTRATOR BEFORE IMPLEMENTATION.
+
+     Contact admin before modifying:
+     - Authentication logic
+     - Password validation
+     - Security measures
+     - Session management
+
+     Unauthorized edits may compromise admin security.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - KIND HEART'S</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <style>
+        /* Additional security-focused styles */
+        .admin-login {
+            max-width: 400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-login__title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .admin-login__form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .admin-login__input {
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .admin-login__input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .admin-login__button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .admin-login__button:hover {
+            background: #ff6b35;
+        }
+
+        .admin-login__button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .admin-login__error {
+            color: var(--error-color);
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .admin-login__success {
+            color: #28a745;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .security-notice {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .security-notice strong {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <a href="index.html" class="header__logo">
+                    <img src="logo.svg" alt="Kind Heart's Sangam Foundation Logo" class="header__logo-img">
+                    <span class="header__logo-text">KIND HEART'S</span>
+                </a>
+                <button id="language-toggle" class="language-toggle" title="Switch Language">
+                    <span class="language-toggle__text">हिन्दी</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <div class="admin-login">
+                <h1 class="admin-login__title" data-translate="admin.title">Admin Access</h1>
+
+                <div class="security-notice">
+                    <strong data-translate="admin.securityNotice">Security Notice:</strong> <span data-translate="admin.securityNoticeText">This page is for authorized administrators only. All access attempts are logged and monitored.</span>
+                </div>
+
+                <div style="background: #ffebee; border: 1px solid #f44336; border-radius: 4px; padding: 1rem; margin-bottom: 1.5rem; font-size: 0.875rem; color: #c62828;">
+                    <strong>🚨 CRITICAL:</strong> Never put passwords in URLs! Passwords in URLs are visible in browser history, server logs, and can be seen by others. Use only the password field below.
+                </div>
+
+                <form class="admin-login__form" id="adminLoginForm">
+                    <div>
+                        <label for="adminPassword" style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-translate="admin.password">
+                            Admin Password:
+                        </label>
+                        <input
+                            type="password"
+                            id="adminPassword"
+                            name="adminPassword"
+                            class="admin-login__input"
+                            required
+                            autocomplete="current-password"
+                        >
+                    </div>
+
+                    <button type="submit" class="admin-login__button" id="loginBtn" data-translate="admin.loginButton">
+                        Access Admin Dashboard
+                    </button>
+                </form>
+
+                <div class="admin-login__error" id="errorMessage"></div>
+                <div class="admin-login__success" id="successMessage"></div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="index.html" style="color: var(--primary-color); text-decoration: none;" data-translate="admin.backToHome">
+                        ← Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="language.js"></script>
+    <script type="module">
+        // Import Supabase client from separate file
+        import supabase from './supabase-client.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('adminLoginForm');
+            const loginBtn = document.getElementById('loginBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const passwordInput = document.getElementById('adminPassword');
+
+            // CRITICAL SECURITY FIX: Clear URL parameters and prevent password exposure
+            (function() {
+                // Clear any password from URL query parameters
+                const url = new URL(window.location);
+                url.searchParams.delete('adminPassword');
+                url.searchParams.delete('password');
+                window.history.replaceState({}, document.title, url.pathname);
+
+                // Prevent form autofill from exposing passwords in URL
+                passwordInput.setAttribute('autocomplete', 'new-password');
+
+                console.log('SECURITY: URL parameters cleared and password field secured');
+            })();
+
+            // Clear any existing session data
+            sessionStorage.removeItem('adminAuthenticated');
+            sessionStorage.removeItem('adminAuthTime');
+
+            // Simple rate limiting
+            let loginAttempts = 0;
+            let lastAttemptTime = 0;
+
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // CRITICAL SECURITY: Ensure no password data leaks to URL
+                const url = new URL(window.location);
+                if (url.searchParams.has('adminPassword') || url.searchParams.has('password')) {
+                    url.searchParams.delete('adminPassword');
+                    url.searchParams.delete('password');
+                    window.history.replaceState({}, document.title, url.pathname);
+                }
+
+                const password = passwordInput.value.trim();
+
+                if (!password) {
+                    showError('Please enter the admin password.');
+                    return;
+                }
+
+                // Enhanced rate limiting using environment variables (with fallbacks)
+                const maxAttempts = parseInt(import.meta?.env?.VITE_MAX_LOGIN_ATTEMPTS) || 3;
+                const lockoutTime = parseInt(import.meta?.env?.VITE_LOGIN_LOCKOUT_TIME) || 60000;
+
+                const now = Date.now();
+                if (loginAttempts >= maxAttempts && now - lastAttemptTime < lockoutTime) {
+                    const remainingTime = Math.ceil((lockoutTime - (now - lastAttemptTime)) / 1000);
+                    showError(`Too many attempts. Please wait ${remainingTime} seconds before trying again.`);
+                    return;
+                }
+
+                if (now - lastAttemptTime >= 60000) {
+                    loginAttempts = 0;
+                }
+
+                loginAttempts++;
+                lastAttemptTime = now;
+
+                setLoading(true);
+                clearMessages();
+
+                try {
+                    // Validate password against Supabase database only
+                    console.log('DEBUG: Querying admin_credentials table for authentication');
+                    const { data, error } = await supabase
+                        .from('admin_credentials')
+                        .select('password_hash, salt')
+                        .eq('id', 1)
+                        .single();
+
+                    if (error || !data) {
+                        console.error('CRITICAL: Database error during authentication:', error);
+                        console.error('CRITICAL: No admin credentials found in database');
+                        console.error('DEBUG: Checking if admin_credentials table exists...');
+
+                        // Check if table exists
+                        const { data: tableCheck, error: tableError } = await supabase
+                            .from('admin_credentials')
+                            .select('id')
+                            .limit(1);
+
+                        if (tableError) {
+                            console.error('CRITICAL: admin_credentials table does not exist or is not accessible');
+                            showError('Database not configured. Please run supabase-schema.sql first.');
+                        } else {
+                            showError('No admin credentials found. Please set up admin password first.');
+                        }
+                        return;
+                    }
+
+                    console.log('DEBUG: Admin credentials retrieved successfully');
+
+                    // Use database-stored credentials for authentication
+                    const isValidPassword = await validatePassword(password, data.password_hash, data.salt);
+                    if (isValidPassword) {
+                        await createAdminSession();
+                        showSuccess('Login successful! Redirecting...');
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1500);
+                    } else {
+                        showError('Invalid admin password.');
+                    }
+
+                } catch (error) {
+                    console.error('Login error:', error);
+                    showError('An error occurred during login. Please try again.');
+                } finally {
+                    setLoading(false);
+                }
+            });
+
+            async function validatePassword(password, storedHash, salt) {
+                console.log('DEBUG: Validating password attempt');
+
+                if (!password || !storedHash || !salt) {
+                    console.error('SECURITY: Missing required authentication parameters');
+                    return false;
+                }
+
+                try {
+                    // Use database authentication with proper hashing
+                    console.log('DEBUG: Using secure database authentication');
+                    const encoder = new TextEncoder();
+                    const data = encoder.encode(password + salt);
+                    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                    const hashArray = Array.from(new Uint8Array(hashBuffer));
+                    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+                    console.log('DEBUG: Password validation completed securely');
+
+                    return hashHex === storedHash;
+                } catch (error) {
+                    console.error('CRITICAL: Error during password validation:', error);
+                    return false;
+                }
+            }
+
+            async function createAdminSession() {
+                // Use environment variable for session timeout with fallback
+                const sessionTimeout = parseInt(import.meta?.env?.VITE_ADMIN_SESSION_TIMEOUT) || (24 * 60 * 60 * 1000);
+
+                const sessionData = {
+                    authenticated: true,
+                    timestamp: Date.now(),
+                    expiresAt: Date.now() + sessionTimeout
+                };
+
+                sessionStorage.setItem('adminAuthenticated', 'true');
+                sessionStorage.setItem('adminAuthTime', sessionData.timestamp.toString());
+                sessionStorage.setItem('adminSessionExpiry', sessionData.expiresAt.toString());
+
+                // Log successful login (without storing sensitive data)
+                console.log('Admin login successful at:', new Date().toISOString());
+            }
+
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            }
+
+            function showSuccess(message) {
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+            }
+
+            function clearMessages() {
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+            }
+
+            function setLoading(isLoading) {
+                loginBtn.disabled = isLoading;
+                loginBtn.textContent = isLoading ? 'Validating...' : 'Access Admin Dashboard';
+            }
+
+            // Check for existing valid session
+            const existingAuth = sessionStorage.getItem('adminAuthenticated');
+            const authTime = sessionStorage.getItem('adminAuthTime');
+            const sessionExpiry = sessionStorage.getItem('adminSessionExpiry');
+
+            if (existingAuth === 'true' && authTime && sessionExpiry) {
+                if (Date.now() < parseInt(sessionExpiry)) {
+                    showSuccess('Valid session detected. Redirecting...');
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1000);
+                } else {
+                    // Session expired
+                    sessionStorage.removeItem('adminAuthenticated');
+                    sessionStorage.removeItem('adminAuthTime');
+                    sessionStorage.removeItem('adminSessionExpiry');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1167 @@
+<!-- CRITICAL: ADMIN PERMISSION REQUIRED BEFORE EDITING THIS FILE
+
+     This file contains the main landing page for KIND HEART'S website.
+     It includes the core UI structure and content sections.
+
+     ANY CHANGES TO THIS FILE MUST BE APPROVED BY AN ADMINISTRATOR BEFORE IMPLEMENTATION.
+
+     Contact admin before modifying:
+     - Page structure and layout
+     - Content sections (hero, about, how-it-works, contact)
+     - Footer information
+     - Script integrations
+
+     Unauthorized edits may affect website functionality and user experience.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>KIND HEART'S</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="kh-header.css">
+</head>
+<body>
+
+<header class="kh-header">
+    <div class="kh-container">
+        <a href="index.html" class="kh-logo">
+            <i class="fas fa-heart"></i> Kind Heart’s
+        </a>
+        <nav class="kh-nav">
+            <ul class="kh-nav-list">
+                <li class="kh-nav-item"><a href="index.html" class="kh-nav-link active">Home</a></li>
+                <li class="kh-nav-item"><a href="#about" class="kh-nav-link">About Us</a></li>
+                <li class="kh-nav-item"><a href="#mission" class="kh-nav-link">Our Mission</a></li>
+                <li class="kh-nav-item"><a href="learning-hub.html" class="kh-nav-link">BE VOLUNTEER</a></li>
+                <li class="kh-nav-item"><a href="donate.html" class="kh-nav-link kh-donate-nav">Donate Now</a></li>
+                <li class="kh-nav-item"><a href="admin-login.html" class="kh-nav-link">Admin</a></li>
+                <li class="kh-nav-item"><a href="#contact" class="kh-nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="kh-hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero__content animate-fade-in">
+                    <h1 class="hero__title animate-slide-up" data-translate="hero.title">Millions Still Go Hungry While Surplus Food Goes to Waste</h1>
+                    <p class="hero__subtitle animate-slide-up animate-delay-1" id="rotating-subtitle" data-translate="hero.subtitle" data-dynamic-content="true">Every 3 seconds, a life is lost to hunger. Every minute, tons of food are discarded. Together, we can bridge this gap.</p>
+                    <div class="hero__buttons animate-slide-up animate-delay-2">
+                        <a href="donate.html" class="button button--primary button--large" data-translate="hero.button">Help Someone Not Sleep Hungry Tonight</a>
+                    </div>
+
+                    <!-- Image Slider Section -->
+                    <section class="image-slider-section section animate-on-scroll">
+                        <div class="container">
+                            <div class="image-slider">
+                                <div class="slider-container">
+                                    <div class="slider-wrapper">
+                                        <!-- Slide 1 - Replace with your first image link -->
+                                        <div class="slide active">
+                                            <img src="https://lagaowallpaper.com/wp-content/uploads/2025/10/ff537851-cf15-479c-adf0-010c0e9efc25-2060x1236-1.avif" alt="Food Distribution Impact" loading="lazy">
+                                            <div class="slide-content">
+                                                <h3 data-translate="slider.foodDistribution">Food Distribution Impact</h3>
+                                                <p data-translate="slider.foodDistributionDesc">Every meal we distribute creates a ripple effect of hope and nourishment in communities across the region.</p>
+                                            </div>
+                                        </div>
+                                        <!-- Slide 2 - Replace with your second image link -->
+                                        <div class="slide">
+                                            <img src="https://lagaowallpaper.com/wp-content/uploads/2025/10/atp5-01-7.webp" alt="Community Support" loading="lazy">
+                                            <div class="slide-content">
+                                                <h3 data-translate="slider.communitySupport">Community Support</h3>
+                                                <p data-translate="slider.communitySupportDesc">Building stronger communities through sustainable food rescue programs that benefit everyone involved.</p>
+                                            </div>
+                                        </div>
+                                        <!-- Slide 3 - Replace with your third image link -->
+                                        <div class="slide">
+                                            <img src=https://lagaowallpaper.com/wp-content/uploads/2025/10/top-10-causes-of-food-insecurity.jpg" alt="Volunteer Network" loading="lazy">
+                                            <div class="slide-content">
+                                                <h3 data-translate="slider.volunteerNetwork">Volunteer Network</h3>
+                                                <p data-translate="slider.volunteerNetworkDesc">Our dedicated volunteers make it possible to rescue and redistribute food efficiently across the region.</p>
+                                            </div>
+                                        </div>
+                                        <!-- Slide 4 - Replace with your fourth image link -->
+                                        <div class="slide">
+                                            <img src="https://lagaowallpaper.com/wp-content/uploads/2025/10/image1440x560cropped.jpg" alt="Sustainable Future" loading="lazy">
+                                            <div class="slide-content">
+                                                <h3 data-translate="slider.sustainableFuture">Sustainable Future</h3>
+                                                <p data-translate="slider.sustainableFutureDesc">Creating a sustainable model that reduces food waste while addressing hunger for generations to come.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Navigation arrows -->
+                                    <button class="slider-nav prev" aria-label="Previous slide">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M15 18l-6-6 6-6"/>
+                                        </svg>
+                                    </button>
+                                    <button class="slider-nav next" aria-label="Next slide">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 18l6-6-6-6"/>
+                                        </svg>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Crisis Statistics Cards Section - Hidden for Privacy -->
+                    <div class="crisis-statistics animate-fade-in animate-delay-3" style="display: none !important;">
+                        <div class="container">
+                            <div class="statistics-header">
+                                <h2 class="statistics-title" data-translate="crisis.title">Global Crisis Statistics</h2>
+                                <p class="statistics-subtitle" data-translate="crisis.subtitle">Understanding the scale of global food insecurity and waste</p>
+                            </div>
+                            <div class="statistics-grid">
+                                <!-- Card 1: Global Hunger -->
+                                <div class="stat-card">
+                                    <div class="stat-card-header">
+                                        <div class="stat-icon">🌍</div>
+                                        <h3 class="stat-title" data-translate="crisis.globalHunger">Global Hunger Crisis</h3>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number">673M</div>
+                                        <p class="stat-description" data-translate="crisis.stat1">people face hunger globally (8.2% of world population)</p>
+                                        <div class="stat-source" data-translate="crisis.source1">UN State of Food Security Report 2025</div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2: Daily Deaths -->
+                                <div class="stat-card">
+                                    <div class="stat-card-header">
+                                        <div class="stat-icon">💔</div>
+                                        <h3 class="stat-title" data-translate="crisis.dailyDeaths">Daily Loss of Life</h3>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number">25,000</div>
+                                        <p class="stat-description" data-translate="crisis.stat2">people die daily from hunger and related causes</p>
+                                        <p class="stat-highlight">Including 10,000+ children</p>
+                                        <div class="stat-source" data-translate="crisis.source2">UN Chronicle & Global Hunger Statistics</div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 3: Food Waste -->
+                                <div class="stat-card">
+                                    <div class="stat-card-header">
+                                        <div class="stat-icon">🗑️</div>
+                                        <h3 class="stat-title" data-translate="crisis.foodWaste">Global Food Waste</h3>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number">1.05B</div>
+                                        <p class="stat-description" data-translate="crisis.stat3">tonnes of food wasted annually worldwide</p>
+                                        <p class="stat-highlight">20% of all food available to consumers</p>
+                                        <div class="stat-source" data-translate="crisis.source3">UNEP Food Waste Index 2024</div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 4: India Child Wasting -->
+                                <div class="stat-card">
+                                    <div class="stat-card-header">
+                                        <div class="stat-icon">🇮🇳</div>
+                                        <h3 class="stat-title" data-translate="crisis.indiaMalnutrition">India's Child Malnutrition</h3>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number">18.7%</div>
+                                        <p class="stat-description" data-translate="crisis.stat4">of Indian children under 5 suffer from wasting</p>
+                                        <p class="stat-highlight">Highest rate globally - 21+ million children affected</p>
+                                        <div class="stat-source" data-translate="crisis.source4">UN SOFI Report 2025</div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 5: Clothing Poverty -->
+                                <div class="stat-card">
+                                    <div class="stat-card-header">
+                                        <div class="stat-icon">👕</div>
+                                        <h3 class="stat-title" data-translate="crisis.clothingPoverty">Global Clothing Poverty</h3>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number">1.2B</div>
+                                        <p class="stat-description" data-translate="crisis.stat5">people worldwide lack adequate clothing</p>
+                                        <p class="stat-highlight">40% are children without proper winter clothing</p>
+                                        <div class="stat-source" data-translate="crisis.source5">World Bank Poverty Report 2024</div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 6: Winter Deaths -->
+                                <div class="stat-card">
+                                    <div class="stat-card-header">
+                                        <div class="stat-icon">❄️</div>
+                                        <h3 class="stat-title" data-translate="crisis.winterDeaths">Cold Exposure Deaths</h3>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number">200K+</div>
+                                        <p class="stat-description" data-translate="crisis.stat6">deaths annually from cold exposure</p>
+                                        <p class="stat-highlight">Most are homeless or in inadequate housing</p>
+                                        <div class="stat-source" data-translate="crisis.source6">WHO Health Statistics 2024</div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 7: Child Impact -->
+                                <div class="stat-card">
+                                    <div class="stat-card-header">
+                                        <div class="stat-icon">👶</div>
+                                        <h3 class="stat-title" data-translate="crisis.childImpact">Impact on Child Development</h3>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number">50%</div>
+                                        <p class="stat-description" data-translate="crisis.stat7">of child deaths are linked to malnutrition</p>
+                                        <p class="stat-highlight">Irreversible damage to physical and cognitive development</p>
+                                        <div class="stat-source" data-translate="crisis.source7">UNICEF Child Development Report</div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 8: Food Waste Leaders -->
+                                <div class="stat-card">
+                                    <div class="stat-card-header">
+                                        <div class="stat-icon">🏭</div>
+                                        <h3 class="stat-title" data-translate="crisis.foodWasteLeaders">Top Food Wasting Countries</h3>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-countries">
+                                            <div class="country-stat">
+                                                <span class="country-name">United States</span>
+                                                <span class="country-number">40M</span>
+                                            </div>
+                                            <div class="country-stat">
+                                                <span class="country-name">European Union</span>
+                                                <span class="country-number">88M</span>
+                                            </div>
+                                        </div>
+                                        <p class="stat-description">tonnes wasted annually</p>
+                                        <div class="stat-source" data-translate="crisis.source8">USDA Food Waste Report 2024</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section animate-on-scroll">
+            <div class="container">
+                <h2 class="section__title animate-fade-in" data-translate="section.mission">Our Mission</h2>
+                <div class="mission-content">
+                    <p class="section__text animate-fade-in animate-delay-1" data-translate="section.missionText">
+                        We bridge the gap between food waste and hunger by creating an efficient network that connects restaurants, hotels, and food establishments with communities in need. Our mission is to ensure no edible food goes to waste while ensuring dignity and nutrition for those who need it most.
+                    </p>
+                    <div class="mission-stats animate-fade-in animate-delay-2">
+                        <div class="mission-stat">
+                            <h3 data-translate="section.missionStat1">Rescue Food</h3>
+                            <p data-translate="section.missionStat1Desc">We collect surplus edible food from partner establishments before it goes to waste.</p>
+                        </div>
+                        <div class="mission-stat">
+                            <h3 data-translate="section.missionStat2">Ensure Safety</h3>
+                            <p data-translate="section.missionStat2Desc">All food is handled with strict hygiene standards and delivered fresh to maintain nutritional value.</p>
+                        </div>
+                        <div class="mission-stat">
+                            <h3 data-translate="section.missionStat3">Feed Communities</h3>
+                            <p data-translate="section.missionStat3Desc">We distribute nourishing meals to shelters, orphanages, and families facing food insecurity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crisis Impact Flashcards Section -->
+        <section class="flashcards-section section animate-on-scroll">
+            <div class="container">
+                <div class="flashcards-header">
+                    <h2 class="flashcards-title" data-translate="flashcards.title">Crisis Statistics & Impact</h2>
+                    <p class="flashcards-subtitle" data-translate="flashcards.subtitle">Essential facts about hunger, food waste, and clothing poverty for NGO awareness</p>
+                </div>
+
+                <div class="flashcards-container">
+                    <!-- Category Filter Buttons -->
+                    <div class="flashcard-filters">
+                        <button class="filter-btn active" data-category="all">All Categories</button>
+                        <button class="filter-btn" data-category="Global Hunger">Global Hunger</button>
+                        <button class="filter-btn" data-category="Food Waste">Food Waste</button>
+                        <button class="filter-btn" data-category="India Malnutrition">India Malnutrition</button>
+                        <button class="filter-btn" data-category="Clothing Poverty">Clothing Poverty</button>
+                        <button class="filter-btn" data-category="Winter Deaths">Winter Deaths</button>
+                        <button class="filter-btn" data-category="Child Impact">Child Impact</button>
+                    </div>
+
+                    <!-- Priority Filter -->
+                    <div class="priority-filters">
+                        <button class="priority-btn active" data-priority="all">All Priority</button>
+                        <button class="priority-btn" data-priority="high">High Priority</button>
+                        <button class="priority-btn" data-priority="medium">Medium Priority</button>
+                    </div>
+
+                    <!-- Flashcards Grid -->
+                    <div class="flashcards-grid">
+                        <div class="flashcard" data-category="Global Hunger" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Global Hunger</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How many people face hunger globally in 2024?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">1</span>
+                                        <i class="fas fa-globe-americas"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Global Hunger</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">673 million people</div>
+                                        <div class="answer-subtitle">(8.2% of world population)</div>
+                                        <div class="answer-source">UN State of Food Security Report 2025</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">1</span>
+                                        <i class="fas fa-globe-americas"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Global Hunger" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Global Hunger</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How many people die daily from hunger?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">2</span>
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Global Hunger</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">25,000 people</div>
+                                        <div class="answer-subtitle">die daily from hunger and related causes</div>
+                                        <div class="answer-details">Including 10,000+ children</div>
+                                        <div class="answer-source">UN Chronicle & Global Hunger Statistics</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">2</span>
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Food Waste" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Food Waste</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How much food is wasted globally each year?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">3</span>
+                                        <i class="fas fa-trash-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Food Waste</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">1.05 billion tonnes</div>
+                                        <div class="answer-subtitle">of food wasted annually</div>
+                                        <div class="answer-details">That's nearly 20% of all food available to consumers</div>
+                                        <div class="answer-source">UNEP Food Waste Index 2024</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">3</span>
+                                        <i class="fas fa-trash-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="India Malnutrition" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">India Malnutrition</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">What percentage of Indian children suffer from wasting?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">4</span>
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">India Malnutrition</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">18.7%</div>
+                                        <div class="answer-subtitle">of Indian children under 5 suffer from wasting</div>
+                                        <div class="answer-details">Highest rate globally - affecting 21+ million children</div>
+                                        <div class="answer-source">UN SOFI Report 2025</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">4</span>
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="India Malnutrition" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">India Malnutrition</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How many Indians are undernourished?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">5</span>
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">India Malnutrition</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">194.6 million Indians</div>
+                                        <div class="answer-subtitle">are undernourished</div>
+                                        <div class="answer-details">Highest number in the world</div>
+                                        <div class="answer-source">Drishti IAS Global Hunger Report</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">5</span>
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="India Malnutrition" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">India Malnutrition</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">What percentage of rural Indians consume inadequate calories?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">6</span>
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">India Malnutrition</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">80%</div>
+                                        <div class="answer-subtitle">of rural population consumes less than 2,200 calories per day</div>
+                                        <div class="answer-details">Below the required 2,400 calories</div>
+                                        <div class="answer-source">Economic Times & Business Standard 2024</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">6</span>
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Clothing Poverty" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Clothing Poverty</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How many homeless people are in India?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">7</span>
+                                        <i class="fas fa-tshirt"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Clothing Poverty</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">1.77 million people</div>
+                                        <div class="answer-subtitle">are homeless in India (2011 census)</div>
+                                        <div class="answer-details">Actual number likely exceeds 3 million today</div>
+                                        <div class="answer-source">Census of India & Civil Society Estimates</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">7</span>
+                                        <i class="fas fa-tshirt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Winter Deaths" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Winter Deaths</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How many homeless people died in Delhi during winter 2024-25?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">8</span>
+                                        <i class="fas fa-snowflake"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Winter Deaths</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">474 homeless people</div>
+                                        <div class="answer-subtitle">died in Delhi</div>
+                                        <div class="answer-details">During Nov 15 - Jan 10 due to cold exposure</div>
+                                        <div class="answer-source">Centre for Holistic Development NGO 2025</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">8</span>
+                                        <i class="fas fa-snowflake"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Clothing Poverty" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Clothing Poverty</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How much clothing is wasted globally each year?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">9</span>
+                                        <i class="fas fa-box-open"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Clothing Poverty</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">92 million tonnes</div>
+                                        <div class="answer-subtitle">of clothing discarded globally</div>
+                                        <div class="answer-details">Equivalent to a garbage truck full of clothes every second</div>
+                                        <div class="answer-source">Clean Clothes Campaign & Earth.org 2024</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">9</span>
+                                        <i class="fas fa-box-open"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Child Impact" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Child Impact</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How does lack of clean clothes affect student attendance?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">10</span>
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Child Impact</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">20%</div>
+                                        <div class="answer-subtitle">of students struggle with clean clothing access</div>
+                                        <div class="answer-details">Leading to chronic absenteeism and missing 10%+ school days</div>
+                                        <div class="answer-source">Whirlpool Research Study 2024</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">10</span>
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Child Impact" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Child Impact</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How many children globally are stunted due to malnutrition?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">11</span>
+                                        <i class="fas fa-child"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Child Impact</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">148 million children</div>
+                                        <div class="answer-subtitle">globally are stunted</div>
+                                        <div class="answer-details">45 million are wasted</div>
+                                        <div class="answer-source">Global Hunger Index 2024</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">11</span>
+                                        <i class="fas fa-child"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="India Malnutrition" data-priority="medium">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">India Malnutrition</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">What percentage of Indian women suffer from anaemia?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">12</span>
+                                        <i class="fas fa-female"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">India Malnutrition</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">53.7%</div>
+                                        <div class="answer-subtitle">of Indian women aged 15-49 suffer from anaemia</div>
+                                        <div class="answer-details">That's 203 million women</div>
+                                        <div class="answer-source">UN SOFI Report 2025</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">12</span>
+                                        <i class="fas fa-female"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Food Waste" data-priority="medium">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Food Waste</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">What fraction of all food produced goes uneaten?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">13</span>
+                                        <i class="fas fa-recycle"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Food Waste</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">One-third</div>
+                                        <div class="answer-subtitle">of all food produced goes uneaten worldwide</div>
+                                        <div class="answer-details">Enough to feed billions of hungry people</div>
+                                        <div class="answer-source">Global Hunger Statistics</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">13</span>
+                                        <i class="fas fa-recycle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Clothing Poverty" data-priority="medium">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Clothing Poverty</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">What percentage of textile waste ends up in landfills in India?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">14</span>
+                                        <i class="fas fa-dumpster"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Clothing Poverty</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">85%</div>
+                                        <div class="answer-subtitle">of textile waste ends up in landfills</div>
+                                        <div class="answer-details">While millions lack basic clothing</div>
+                                        <div class="answer-source">Saaha Zero Waste 2025</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">14</span>
+                                        <i class="fas fa-dumpster"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Winter Deaths" data-priority="medium">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Winter Deaths</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How many homeless people die daily in Delhi during January?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">15</span>
+                                        <i class="fas fa-thermometer-empty"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Winter Deaths</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">Approximately 8</div>
+                                        <div class="answer-subtitle">homeless people die daily in January</div>
+                                        <div class="answer-details">Due to hypothermia and cold-related conditions</div>
+                                        <div class="answer-source">Times of India & The Wire 2025</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">15</span>
+                                        <i class="fas fa-thermometer-empty"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Global Hunger" data-priority="medium">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Global Hunger</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How many people cannot afford healthy diets globally?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">16</span>
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Global Hunger</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">2.8 billion people</div>
+                                        <div class="answer-subtitle">worldwide cannot afford healthy diets</div>
+                                        <div class="answer-details">Due to rising food costs</div>
+                                        <div class="answer-source">UN State of Food Security Report 2025</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">16</span>
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="India Malnutrition" data-priority="medium">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">India Malnutrition</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How many Indian children are stunted?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">17</span>
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">India Malnutrition</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">37 million children</div>
+                                        <div class="answer-subtitle">under 5 are stunted in India</div>
+                                        <div class="answer-details">Indicating chronic undernutrition</div>
+                                        <div class="answer-source">UN SOFI Report 2025</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">17</span>
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Child Impact" data-priority="high">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Child Impact</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">What percentage of child deaths are linked to malnutrition?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">18</span>
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Child Impact</span>
+                                        <span class="flashcard-priority high">High Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">Half of all child deaths</div>
+                                        <div class="answer-subtitle">are linked to malnutrition</div>
+                                        <div class="answer-details">Almost 5 million children die before age 5 annually</div>
+                                        <div class="answer-source">Our World in Data & Global Hunger Index</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">18</span>
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Clothing Poverty" data-priority="medium">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Clothing Poverty</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How many homeless people are there in Delhi?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">19</span>
+                                        <i class="fas fa-city"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Clothing Poverty</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">300,000 homeless people</div>
+                                        <div class="answer-subtitle">in Delhi struggle without adequate clothing</div>
+                                        <div class="answer-details">154,369 living directly on streets</div>
+                                        <div class="answer-source">Shahri Adhikar Manch 2024</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">19</span>
+                                        <i class="fas fa-city"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard" data-category="Child Impact" data-priority="medium">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Child Impact</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <h3 class="flashcard-question">How does clothing access affect school attendance improvement?</h3>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">20</span>
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-header">
+                                        <span class="flashcard-category">Child Impact</span>
+                                        <span class="flashcard-priority medium">Medium Priority</span>
+                                    </div>
+                                    <div class="flashcard-answer">
+                                        <div class="answer-number">90%</div>
+                                        <div class="answer-subtitle">of students showed improved attendance</div>
+                                        <div class="answer-details">When provided access to clean clothes through school programs</div>
+                                        <div class="answer-source">Whirlpool Research Study 2024</div>
+                                    </div>
+                                    <div class="flashcard-footer">
+                                        <span class="flashcard-number">20</span>
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why It Matters Section -->
+        <section class="section section--neutral animate-on-scroll">
+            <div class="container">
+                <h2 class="section__title animate-fade-in" data-translate="section.whyItMatters">Why This Crisis Demands Urgent Action</h2>
+                <div class="narrative-content animate-fade-in animate-delay-1">
+                    <p class="narrative-text" data-translate="section.whyItMattersText1">
+                        The statistics reveal a devastating paradox: while we produce enough food to nourish every person on Earth, hundreds of millions go to bed hungry each night. This isn't just about empty stomachs—it's about stolen futures. Malnourished children face irreversible damage to their cognitive development, with stunted growth leading to impaired learning capacity, reduced school performance, and diminished earning potential throughout their lives. The cycle perpetuates across generations as undernourished mothers give birth to underweight babies, trapping families in poverty.
+                    </p>
+                    <p class="narrative-text" data-translate="section.whyItMattersText2">
+                        Beyond individual suffering, hunger and malnutrition impose enormous societal costs. Countries lose billions in economic productivity as malnourished populations struggle with weakened immune systems, increased healthcare burdens, and reduced workforce capacity. The social fabric tears as food insecurity drives families into debt, children out of schools, and communities into conflict over scarce resources.
+                    </p>
+                    <p class="narrative-text" data-translate="section.whyItMattersText3">
+                        Yet this crisis is entirely preventable. Every discarded meal, every surplus harvest, every uneaten portion represents a missed opportunity to transform a life. When we bridge the gap between waste and want, we don't just feed bodies—we nurture minds, strengthen communities, and build a more equitable world where no child's potential is stunted by hunger.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="section section--neutral animate-on-scroll">
+            <div class="container">
+                <h2 class="section__title animate-fade-in" data-translate="section.howItWorks">How It Works</h2>
+                <div class="features animate-fade-in animate-delay-1">
+                    <div class="card animate-scale-up animate-delay-1">
+                        <h3 class="card__title" data-translate="section.step1">1. Register</h3>
+                        <p data-translate="section.step1Desc">Sign up your hotel, restaurant, or kitchen. Provide details about your food capacity, type, and pickup availability.</p>
+                    </div>
+                    <div class="card animate-scale-up animate-delay-2">
+                        <h3 class="card__title" data-translate="section.step2">2. Schedule Pickup</h3>
+                        <p data-translate="section.step2Desc">Our volunteer network gets notified. A volunteer will be assigned to pick up the surplus food at your specified time.</p>
+                    </div>
+                    <div class="card animate-scale-up animate-delay-3">
+                        <h3 class="card__title" data-translate="section.step3">3. Safe Delivery</h3>
+                        <p data-translate="section.step3Desc">Food is transported in hygienic conditions and delivered to partner shelters, orphanages, and community centers.</p>
+                    </div>
+                    <div class="card animate-scale-up animate-delay-4">
+                        <h3 class="card__title" data-translate="section.step4">4. Get Reports</h3>
+                        <p data-translate="section.step4Desc">Receive monthly reports on the impact of your contribution, including the amount of food donated and meals served.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="contact" class="section section--neutral animate-on-scroll">
+            <div class="container">
+                <h2 class="section__title animate-fade-in" data-translate="section.contact">Contact Us</h2>
+                <p class="section__text animate-fade-in animate-delay-1"><span data-translate="section.contactText">Have questions? Reach out to us at</span> <a href="mailto:kindheartssangam@gmail.com" class="contact-link">kindheartssangam@gmail.com</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> <span data-translate="footer.copyright">KIND HEART'S. All Rights Reserved.</span></p>
+            <p class="footer-mission" data-translate="footer.mission">Together, we're building a hunger-free world, one meal at a time.</p>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast" role="alert">
+        <p class="toast__message"></p>
+    </div>
+
+    <script>
+        // Privacy-optimized initialization - No sensitive data exposure
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="kh-header.js"></script>
+    <script src="language.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Flashcards Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFlashcards();
+        });
+
+        function initializeFlashcards() {
+            const flashcards = document.querySelectorAll('.flashcard');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const priorityButtons = document.querySelectorAll('.priority-btn');
+
+            // Show all flashcards initially with animation
+            showAllFlashcards();
+
+            // Add event listeners for filters
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Filter flashcards
+                    filterFlashcards(category, getActivePriority());
+                });
+            });
+
+            priorityButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const priority = this.getAttribute('data-priority');
+
+                    // Update active button
+                    priorityButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Filter flashcards
+                    filterFlashcards(getActiveCategory(), priority);
+                });
+            });
+
+            // Add click handlers for flashcard flipping
+            flashcards.forEach((flashcard, index) => {
+                flashcard.addEventListener('click', function() {
+                    if (!prefersReducedMotion()) {
+                        this.classList.toggle('flipped');
+                    }
+                });
+
+                // Add keyboard support
+                flashcard.setAttribute('tabindex', '0');
+                flashcard.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        if (!prefersReducedMotion()) {
+                            this.classList.toggle('flipped');
+                        }
+                    }
+                });
+            });
+        }
+
+        function showAllFlashcards() {
+            const flashcards = document.querySelectorAll('.flashcard');
+            flashcards.forEach((flashcard, index) => {
+                setTimeout(() => {
+                    flashcard.classList.add('show');
+                    if (!prefersReducedMotion()) {
+                        flashcard.classList.add('animate-in');
+                    }
+                }, index * 100);
+            });
+        }
+
+        function filterFlashcards(category, priority) {
+            const flashcards = document.querySelectorAll('.flashcard');
+            let visibleCount = 0;
+
+            flashcards.forEach((flashcard, index) => {
+                const cardCategory = flashcard.getAttribute('data-category');
+                const cardPriority = flashcard.getAttribute('data-priority');
+                let shouldShow = true;
+
+                // Check category filter
+                if (category !== 'all' && cardCategory !== category) {
+                    shouldShow = false;
+                }
+
+                // Check priority filter
+                if (priority !== 'all' && cardPriority !== priority) {
+                    shouldShow = false;
+                }
+
+                if (shouldShow) {
+                    flashcard.classList.add('show');
+                    visibleCount++;
+                    if (!prefersReducedMotion()) {
+                        setTimeout(() => {
+                            flashcard.classList.add('animate-in');
+                        }, visibleCount * 50);
+                    }
+                } else {
+                    flashcard.classList.remove('show', 'animate-in');
+                }
+            });
+        }
+
+        function getActiveCategory() {
+            const activeButton = document.querySelector('.filter-btn.active');
+            return activeButton ? activeButton.getAttribute('data-category') : 'all';
+        }
+
+        function getActivePriority() {
+            const activeButton = document.querySelector('.priority-btn.active');
+            return activeButton ? activeButton.getAttribute('data-priority') : 'all';
+        }
+
+        function prefersReducedMotion() {
+            return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>

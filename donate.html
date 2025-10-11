@@ -1,0 +1,443 @@
+<!-- CRITICAL: ADMIN PERMISSION REQUIRED BEFORE EDITING THIS FILE
+
+     This file contains the donation form for Kind Heart's Sangam Foundation.
+     It includes form fields, validation, and user input handling for donor submissions.
+
+     ANY CHANGES TO THIS FILE MUST BE APPROVED BY AN ADMINISTRATOR BEFORE IMPLEMENTATION.
+
+     Contact admin before modifying:
+     - Form structure and fields
+     - Input validation rules
+     - Form submission logic
+     - User interface elements
+     - Integration with JavaScript/app.js
+
+     Unauthorized edits may break the donation process and data collection.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - KIND HEART'S</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="kh-header.css">
+</head>
+<body> 
+<header class="kh-header">
+    <div class="kh-container">
+        <a href="index.html" class="kh-logo">
+            <i class="fas fa-heart"></i> Kind Heart’s
+        </a>
+        <nav class="kh-nav">
+            <ul class="kh-nav-list">
+                <li class="kh-nav-item"><a href="index.html" class="kh-nav-link active">Home</a></li>
+                <li class="kh-nav-item"><a href="index.html#about" class="kh-nav-link">About Us</a></li>
+                <li class="kh-nav-item"><a href="index.html#mission" class="kh-nav-link">Our Mission</a></li>
+                <li class="kh-nav-item"><a href="learning-hub.html" class="kh-nav-link">BE VOLUNTEER</a></li>
+                <li class="kh-nav-item"><a href="donate.html" class="kh-nav-link kh-donate-nav">Donate Now</a></li>
+                <li class="kh-nav-item"><a href="admin-login.html" class="kh-nav-link">Admin</a></li>
+                <li class="kh-nav-item"><a href="index.html#contact" class="kh-nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="donate.html" class="kh-donate-btn">Donate Now</a>
+        <div class="kh-hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1 class="section__title" data-translate="donate.title">Make a Donation</h1>
+                <p class="section__text" data-translate="donate.subtitle">Thank you for your generosity! Your donation will help us connect surplus food with those in need.</p>
+
+                <form id="donation-form" class="form" novalidate>
+                    <!-- Donor Type -->
+                    <div class="form__group">
+                        <p class="form__label" data-translate="donate.donorType">Donor Type *</p>
+                        <div class="form__radio-group">
+                            <label><input type="radio" name="donorType" value="Individual" required> <span data-translate="donate.individual">Individual</span></label>
+                            <label><input type="radio" name="donorType" value="Organization"> <span data-translate="donate.organization">Organization</span></label>
+                        </div>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <!-- Anonymous Donation -->
+                    <div class="form__group">
+                        <label class="form__checkbox-label">
+                            <input type="checkbox" id="anonymous" name="anonymous">
+                            <span data-translate="donate.anonymous">Make this donation anonymous (your contact details will be hidden from public view)</span>
+                        </label>
+                    </div>
+
+                    <!-- Organization Name (shown only if Organization type selected) -->
+                    <div class="form__group" id="orgNameGroup" style="display: none;">
+                        <label for="organization" class="form__label" data-translate="donate.orgName">Organization Name *</label>
+                        <input type="text" id="organization" name="organization" class="form__input">
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <!-- Full Name (hidden if anonymous) -->
+                    <div class="form__group" id="nameGroup">
+                        <label for="name" class="form__label" data-translate="donate.fullName">Full Name *</label>
+                        <input type="text" id="name" name="name" class="form__input" required>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="form__group">
+                        <label for="phone" class="form__label" data-translate="donate.phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" class="form__input" required pattern="[0-9]{10}">
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="email" class="form__label" data-translate="donate.email">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form__input" required>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <!-- Address Information -->
+                    <div class="form__group">
+                        <label for="address" class="form__label" data-translate="donate.address">Full Address *</label>
+                        <textarea id="address" name="address" class="form__input" rows="3" required></textarea>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="city" class="form__label" data-translate="donate.city">City *</label>
+                        <input type="text" id="city" name="city" class="form__input" required>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="state" class="form__label" data-translate="donate.state">State *</label>
+                        <input type="text" id="state" name="state" class="form__input" required>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="pincode" class="form__label" data-translate="donate.pincode">Pincode *</label>
+                        <input type="text" id="pincode" name="pincode" class="form__input" required pattern="[0-9]{6}">
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <!-- Donation Categories -->
+                    <div class="form__group">
+                        <p class="form__label" data-translate="donate.categories">Donation Categories * (select all that apply)</p>
+                        <div class="form__checkbox-group">
+                            <label><input type="checkbox" name="donationCategories" value="money" id="money"> <span data-translate="donate.money">Money</span></label>
+                            <label><input type="checkbox" name="donationCategories" value="clothes" id="clothes"> <span data-translate="donate.clothes">Clothes</span></label>
+                            <label><input type="checkbox" name="donationCategories" value="food" id="food"> <span data-translate="donate.food">Food</span></label>
+                            <label><input type="checkbox" name="donationCategories" value="other" id="other"> <span data-translate="donate.other">Other</span></label>
+                        </div>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <!-- Money Donation Fields -->
+                    <div class="form__group donation-section" id="moneySection" style="display: none;">
+                        <h3 class="form__label" data-translate="donate.moneyDetails">Money Donation Details</h3>
+
+                        <div class="form__group">
+                            <label for="amount" class="form__label" data-translate="donate.amount">Amount *</label>
+                            <input type="number" id="amount" name="money.amount" class="form__input" min="1" step="0.01">
+                            <p class="form__error-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="currency" class="form__label" data-translate="donate.currency">Currency *</label>
+                            <select id="currency" name="money.currency" class="form__input" required>
+                                <option value="" data-translate="donate.selectCurrency">Select Currency</option>
+                                <option value="INR" data-translate="donate.inr">INR (₹)</option>
+                                <option value="USD" data-translate="donate.usd">USD ($)</option>
+                                <option value="EUR" data-translate="donate.eur">EUR (€)</option>
+                                <option value="GBP" data-translate="donate.gbp">GBP (£)</option>
+                            </select>
+                            <p class="form__error-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="paymentMethod" class="form__label" data-translate="donate.paymentMethod">Payment Method *</label>
+                            <select id="paymentMethod" name="money.paymentMethod" class="form__input" required>
+                                <option value="" data-translate="donate.selectPayment">Select Payment Method</option>
+                                <option value="UPI" data-translate="donate.upi">UPI</option>
+                                <option value="Bank Transfer" data-translate="donate.bankTransfer">Bank Transfer</option>
+                                <option value="Credit/Debit Card" data-translate="donate.card">Credit/Debit Card</option>
+                                <option value="Cash" data-translate="donate.cash">Cash</option>
+                                <option value="Other" data-translate="donate.otherPayment">Other</option>
+                            </select>
+                            <p class="form__error-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="transactionRef" class="form__label" data-translate="donate.transactionRef">Transaction Reference</label>
+                            <input type="text" id="transactionRef" name="money.transactionRef" class="form__input" data-translate-placeholder="donate.transactionPlaceholder" placeholder="UPI ID, Transaction ID, or Reference Number">
+                        </div>
+
+                        <div class="form__group">
+                            <p class="form__label" data-translate="donate.receipt">Request Receipt?</p>
+                            <div class="form__radio-group">
+                                <label><input type="radio" name="money.receipt" value="Yes"> <span data-translate="donate.yes">Yes</span></label>
+                                <label><input type="radio" name="money.receipt" value="No"> <span data-translate="donate.no">No</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clothes Donation Fields -->
+                    <div class="form__group donation-section" id="clothesSection" style="display: none;">
+                        <h3 class="form__label" data-translate="donate.clothesDetails">Clothes Donation Details</h3>
+
+                        <div class="form__group">
+                            <p class="form__label" data-translate="donate.clothesType">Clothes Type * (select all that apply)</p>
+                            <div class="form__checkbox-group">
+                                <label><input type="checkbox" name="clothes.types" value="Men"> <span data-translate="donate.men">Men</span></label>
+                                <label><input type="checkbox" name="clothes.types" value="Women"> <span data-translate="donate.women">Women</span></label>
+                                <label><input type="checkbox" name="clothes.types" value="Kids"> <span data-translate="donate.kids">Kids</span></label>
+                                <label><input type="checkbox" name="clothes.types" value="Mixed"> <span data-translate="donate.mixed">Mixed</span></label>
+                            </div>
+                            <p class="form__error-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="condition" class="form__label" data-translate="donate.condition">Condition *</label>
+                            <select id="condition" name="clothes.condition" class="form__input" required>
+                                <option value="" data-translate="donate.selectCondition">Select Condition</option>
+                                <option value="Good" data-translate="donate.good">Good</option>
+                                <option value="Very Good" data-translate="donate.veryGood">Very Good</option>
+                                <option value="Like New" data-translate="donate.likeNew">Like New</option>
+                                <option value="Needs Repair" data-translate="donate.needsRepair">Needs Repair</option>
+                            </select>
+                            <p class="form__error-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="count" class="form__label" data-translate="donate.count">Estimated Count *</label>
+                            <input type="number" id="count" name="clothes.count" class="form__input" min="1" data-translate-placeholder="donate.countPlaceholder" placeholder="Number of garments">
+                            <p class="form__error-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="sizes" class="form__label" data-translate="donate.sizes">Sizes</label>
+                            <input type="text" id="sizes" name="clothes.sizes" class="form__input" data-translate-placeholder="donate.sizesPlaceholder" placeholder="e.g., M, L, S, XL or various sizes">
+                        </div>
+
+                        <div class="form__group">
+                            <label for="clothesNotes" class="form__label" data-translate="donate.notes">Special Notes</label>
+                            <textarea id="clothesNotes" name="clothes.notes" class="form__input" rows="3" data-translate-placeholder="donate.notesPlaceholder" placeholder="Any additional information about the clothes"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Food Donation Fields -->
+                    <div class="form__group donation-section" id="foodSection" style="display: none;">
+                        <h3 class="form__label" data-translate="donate.foodDetails">Food Donation Details</h3>
+
+                        <div class="form__group">
+                            <p class="form__label" data-translate="donate.foodType">Food Type *</p>
+                            <div class="form__radio-group">
+                                <label><input type="radio" name="food.type" value="Vegetarian" required> <span data-translate="donate.vegetarian">Vegetarian</span></label>
+                                <label><input type="radio" name="food.type" value="Non-Veg"> <span data-translate="donate.nonVeg">Non-Vegetarian</span></label>
+                                <label><input type="radio" name="food.type" value="Both"> <span data-translate="donate.both">Both</span></label>
+                            </div>
+                            <p class="form__error-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="quantity" class="form__label" data-translate="donate.quantity">Quantity Estimate *</label>
+                            <input type="text" id="quantity" name="food.quantity" class="form__input" required data-translate-placeholder="donate.quantityPlaceholder" placeholder="e.g., 20 meals, 5 kg, 10 boxes">
+                            <p class="form__error-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form__group">
+                            <p class="form__label" data-translate="donate.pickupAvailable">Pickup Available? *</p>
+                            <div class="form__radio-group">
+                                <label><input type="radio" name="food.pickupAvailable" value="Yes" required> <span data-translate="donate.yes">Yes</span></label>
+                                <label><input type="radio" name="food.pickupAvailable" value="No"> <span data-translate="donate.no">No</span></label>
+                            </div>
+                            <p class="form__error-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form__group" id="dropOffGroup" style="display: none;">
+                            <label for="dropOffCenter" class="form__label" data-translate="donate.dropOffCenter">Preferred Drop-off Center</label>
+                            <select id="dropOffCenter" name="food.dropOffCenter" class="form__input">
+                                <option value="" data-translate="donate.selectCenter">Select a center</option>
+                                <option value="Main Center - Aurangabad" data-translate="donate.mainCenter">Main Center - Aurangabad</option>
+                                <option value="Community Hall - Sone Colony" data-translate="donate.communityHall">Community Hall - Sone Colony</option>
+                                <option value="NGO Office - MG Road" data-translate="donate.ngoOffice">NGO Office - MG Road</option>
+                                <option value="Other" data-translate="donate.otherCenter">Other (please specify in notes)</option>
+                            </select>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="foodNotes" class="form__label" data-translate="donate.bestBefore">Best Before / Safety Notes</label>
+                            <textarea id="foodNotes" name="food.notes" class="form__input" rows="3" data-translate-placeholder="donate.bestBeforePlaceholder" placeholder="Expiry dates, storage instructions, or safety information"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Other Donation Fields -->
+                    <div class="form__group donation-section" id="otherSection" style="display: none;">
+                        <h3 class="form__label" data-translate="donate.otherDetails">Other Donation Details</h3>
+
+                        <div class="form__group">
+                            <label for="otherDescription" class="form__label" data-translate="donate.description">Description *</label>
+                            <textarea id="otherDescription" name="other.description" class="form__input" rows="3" required data-translate-placeholder="donate.descriptionPlaceholder" placeholder="Please describe what you're donating"></textarea>
+                            <p class="form__error-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="otherQuantity" class="form__label" data-translate="donate.quantityAmount">Quantity/Amount</label>
+                            <input type="text" id="otherQuantity" name="other.quantity" class="form__input" data-translate-placeholder="donate.quantityPlaceholder" placeholder="e.g., 5 books, 2 laptops, etc.">
+                        </div>
+                    </div>
+
+                    <!-- Preferred Pickup Information -->
+                    <div class="form__group">
+                        <label for="preferredDate" class="form__label" data-translate="donate.preferredDate">Preferred Pickup Date *</label>
+                        <input type="date" id="preferredDate" name="preferredPickup.date" class="form__input" required min="">
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="timeWindow" class="form__label" data-translate="donate.timeWindow">Preferred Time Window *</label>
+                        <input type="text" id="timeWindow" name="preferredPickup.timeWindow" class="form__input" required data-translate-placeholder="donate.timePlaceholder" placeholder="e.g., 9:00 AM - 12:00 PM">
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="form__group">
+                        <label for="files" class="form__label" data-translate="donate.uploadPhotos">Upload Photos/Receipts</label>
+                        <input type="file" id="files" name="files" class="form__input" accept="image/*,.pdf" multiple>
+                        <p class="form__helper-text" data-translate="donate.uploadHelp">Upload images of items or receipts (JPG, PNG, PDF). Alternatively, provide Google Drive links below.</p>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="driveLinks" class="form__label" data-translate="donate.driveLinks">Google Drive Links</label>
+                        <textarea id="driveLinks" name="files" class="form__input" rows="2" data-translate-placeholder="donate.drivePlaceholder" placeholder="Paste shareable Google Drive links here"></textarea>
+                        <p class="form__helper-text" data-translate="donate.driveHelp">If files are too large, upload to Google Drive and paste the shareable link(s) here.</p>
+                    </div>
+
+                    <!-- Additional Notes -->
+                    <div class="form__group">
+                        <label for="notes" class="form__label" data-translate="donate.additionalNotes">Additional Notes</label>
+                        <textarea id="notes" name="notes" class="form__input" rows="3" data-translate-placeholder="donate.notesPlaceholder" placeholder="Any additional information or special instructions"></textarea>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="form__group">
+                        <label class="form__checkbox-label">
+                            <input type="checkbox" id="terms" name="agreeTerms" required>
+                            <span data-translate="donate.terms">I agree to the</span> <a href="#" target="_blank" data-translate="donate.termsLink">Terms and Conditions</a> <span data-translate="donate.termsText">of Kind Heart's Sangam Foundation. *</span>
+                        </label>
+                        <p class="form__error-message" aria-live="polite"></p>
+                    </div>
+
+                    <!-- Honeypot field for spam protection -->
+                    <div class="form__group form__group--honeypot" aria-hidden="true">
+                        <label for="website">Please leave this field empty</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="button button--primary form__submit">
+                        <span class="button__text" data-translate="donate.submit">Submit Donation</span>
+                        <span class="button__spinner"></span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> KIND HEART'S. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast" role="alert">
+        <p class="toast__message"></p>
+    </div>
+
+    <!-- Full Screen Celebration Overlay -->
+    <div id="fullscreen-celebration" class="fullscreen-celebration">
+        <div class="celebration-hearts-bg">
+            <div class="celebration-heart-bg">❤️</div>
+            <div class="celebration-heart-bg">💖</div>
+            <div class="celebration-heart-bg">💝</div>
+            <div class="celebration-heart-bg">💕</div>
+            <div class="celebration-heart-bg">😍</div>
+            <div class="celebration-heart-bg">🎉</div>
+        </div>
+        <div class="celebration-container">
+            <div class="celebration-loading-circle"></div>
+            <h1 class="celebration-title">🎉 Donation Successful!</h1>
+            <p class="celebration-subtitle">Thank you for your incredible generosity!<br>You are making a real difference in people's lives! 🌟</p>
+            <div style="margin-top: 2rem; font-size: 1.1rem; opacity: 0.9;">
+                Redirecting you back in a moment...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Privacy-optimized initialization - No sensitive data exposure
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="language.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM Content Loaded - starting donation form initialization');
+            initializeDonationForm();
+
+
+            // Manual mobile navigation setup as backup
+            setTimeout(() => {
+                setupMobileNavigation();
+            }, 1000);
+        });
+
+        // Manual mobile navigation setup function
+        function setupMobileNavigation() {
+            const hamburger = document.querySelector('.kh-hamburger');
+            const nav = document.querySelector('.kh-nav');
+
+            if (!hamburger || !nav) {
+                return;
+            }
+
+            // Remove existing event listeners
+            const newHamburger = hamburger.cloneNode(true);
+            hamburger.parentNode.replaceChild(newHamburger, hamburger);
+
+            // Add manual click handler
+            newHamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Toggle menu
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    newHamburger.querySelector('i').className = 'fas fa-bars';
+                } else {
+                    nav.classList.add('active');
+                    newHamburger.querySelector('i').className = 'fas fa-times';
+                }
+            });
+
+            // Close menu when clicking nav links
+            const navLinks = nav.querySelectorAll('.kh-nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    newHamburger.querySelector('i').className = 'fas fa-bars';
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>

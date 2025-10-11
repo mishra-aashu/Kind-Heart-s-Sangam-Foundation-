@@ -1,0 +1,578 @@
+<!-- VOLUNTEER REGISTRATION SYSTEM - KIND HEART'S SANGAM FOUNDATION
+
+     This file contains the volunteer registration system for new volunteers.
+     Allows volunteers to create accounts with phone number and password.
+
+     Features:
+     - Phone number and password registration
+     - Account creation in database
+     - Email validation (optional)
+     - Terms and conditions acceptance
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Registration - KIND HEART'S</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <style>
+        /* Volunteer registration specific styles */
+        .volunteer-registration {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .registration__title {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .registration__subtitle {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .registration__form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .registration__input {
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .registration__input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .registration__input:invalid {
+            border-color: var(--error-color);
+        }
+
+        .registration__button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .registration__button:hover {
+            background: #ff6b35;
+        }
+
+        .registration__button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .registration__error {
+            color: var(--error-color);
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+            padding: 0.75rem;
+            background: #ffebee;
+            border-radius: 4px;
+            border-left: 3px solid var(--error-color);
+        }
+
+        .registration__success {
+            color: #28a745;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+            padding: 0.75rem;
+            background: #e8f5e8;
+            border-radius: 4px;
+            border-left: 3px solid #28a745;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .login-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .info-notice {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .info-notice strong {
+            color: #1976d2;
+        }
+
+        .terms-section {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .terms-section h4 {
+            margin-top: 0;
+            color: #495057;
+        }
+
+        .terms-section p {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-group label {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .password-strength {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .strength-weak { color: #dc3545; }
+        .strength-medium { color: #ffc107; }
+        .strength-strong { color: #28a745; }
+
+        /* Phone number input styling */
+        .phone-input {
+            position: relative;
+        }
+
+        .phone-input::before {
+            content: '+91';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .phone-input input {
+            padding-left: 45px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <a href="index.html" class="header__logo">
+                    <img src="logo.svg" alt="Kind Heart's Sangam Foundation Logo" class="header__logo-img">
+                    <span class="header__logo-text">KIND HEART'S</span>
+                </a>
+                <button id="language-toggle" class="language-toggle" title="Switch Language">
+                    <span class="language-toggle__text">हिन्दी</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <div class="volunteer-registration">
+                <h1 class="registration__title">Join as a Volunteer</h1>
+                <p class="registration__subtitle">Create your account to access learning modules and track your progress</p>
+
+                <div class="info-notice">
+                    <strong>Welcome!</strong> By registering, you'll gain access to our comprehensive learning platform designed to empower volunteers in community nutrition, food waste reduction, and sustainable development.
+                </div>
+
+                <form class="registration__form" id="volunteerRegistrationForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            class="registration__input"
+                            placeholder="Enter your full name"
+                            required
+                            autocomplete="name"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number *</label>
+                        <div class="phone-input">
+                            <input
+                                type="tel"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                class="registration__input"
+                                placeholder="Enter your 10-digit phone number"
+                                required
+                                pattern="[0-9]{10}"
+                                maxlength="10"
+                                autocomplete="tel"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address (Optional)</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="registration__input"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="registration__input"
+                            placeholder="Create a strong password"
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                        >
+                        <div id="passwordStrength" class="password-strength"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            class="registration__input"
+                            placeholder="Confirm your password"
+                            required
+                            autocomplete="new-password"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="termsAccepted" required>
+                            <label for="termsAccepted">
+                                I agree to the <a href="#" style="color: var(--primary-color);">Terms of Service</a> and
+                                <a href="#" style="color: var(--primary-color);">Privacy Policy</a>.
+                                I understand that my progress data will be stored securely.
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="terms-section">
+                        <h4>Terms of Service Summary:</h4>
+                        <p>• Your account information and learning progress will be stored securely in our database</p>
+                        <p>• You are responsible for maintaining the confidentiality of your password</p>
+                        <p>• Learning progress data may be used for program improvement and reporting</p>
+                        <p>• You can request account deletion at any time by contacting support</p>
+                        <p>• All learning content is provided for educational purposes only</p>
+                    </div>
+
+                    <button type="submit" class="registration__button" id="registerBtn">
+                        Create Volunteer Account
+                    </button>
+                </form>
+
+                <div class="registration__error" id="errorMessage"></div>
+                <div class="registration__success" id="successMessage"></div>
+
+                <div class="login-footer">
+                    Already have an account? <a href="volunteer-login.html">Login here</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast" role="alert">
+        <p class="toast__message"></p>
+    </div>
+
+    <!-- Full Screen Celebration Overlay -->
+    <div id="fullscreen-celebration" class="fullscreen-celebration">
+        <div class="celebration-hearts-bg">
+            <div class="celebration-heart-bg">❤️</div>
+            <div class="celebration-heart-bg">💖</div>
+            <div class="celebration-heart-bg">💝</div>
+            <div class="celebration-heart-bg">💕</div>
+            <div class="celebration-heart-bg">😍</div>
+            <div class="celebration-heart-bg">🎉</div>
+        </div>
+        <div class="celebration-container">
+            <div class="celebration-loading-circle"></div>
+            <h1 class="celebration-title">🎉 Registration Successful!</h1>
+            <p class="celebration-subtitle">Welcome to Kind Heart's Family!<br>Your journey to make a difference starts now! 🌟</p>
+            <div style="margin-top: 2rem; font-size: 1.1rem; opacity: 0.9;">
+                Redirecting you to login in a moment...
+            </div>
+        </div>
+    </div>
+
+    <script src="language.js"></script>
+    <script type="module">
+        // Import Supabase client
+        import supabase from './supabase-client.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const registrationForm = document.getElementById('volunteerRegistrationForm');
+            const registerBtn = document.getElementById('registerBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const phoneInput = document.getElementById('phoneNumber');
+
+            // Password strength checker
+            passwordInput.addEventListener('input', checkPasswordStrength);
+
+            // Phone number formatting
+            phoneInput.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/\D/g, '');
+            });
+
+            registrationForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(registrationForm);
+                const fullName = formData.get('fullName').trim();
+                const phoneNumber = formData.get('phoneNumber').trim();
+                const email = formData.get('email').trim();
+                const password = formData.get('password');
+                const confirmPassword = formData.get('confirmPassword');
+
+                // Validation
+                if (!fullName || !phoneNumber || !password || !confirmPassword) {
+                    showError('Please fill in all required fields.');
+                    return;
+                }
+
+                if (phoneNumber.length !== 10) {
+                    showError('Please enter a valid 10-digit phone number.');
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    showError('Passwords do not match.');
+                    return;
+                }
+
+                if (password.length < 6) {
+                    showError('Password must be at least 6 characters long.');
+                    return;
+                }
+
+                setLoading(true);
+                clearMessages();
+
+                try {
+                    // Generate salt and hash password first
+                    const salt = generateSalt();
+                    const passwordHash = await hashPassword(password, salt);
+
+                    // Create volunteer account
+                    const { data, error } = await supabase
+                        .from('volunteers')
+                        .insert({
+                            phone_number: phoneNumber,
+                            password_hash: passwordHash,
+                            salt: salt,
+                            full_name: fullName,
+                            email: email || null
+                        })
+                        .select()
+                        .single();
+
+                    if (error) {
+                        console.error('Registration error:', error);
+
+                        // Provide specific error messages based on error type
+                        if (error.code === '42P01') {
+                            showError('Database tables not set up yet. Please contact administrator to run the volunteer system schema.');
+                        } else if (error.code === '23505') {
+                            showError('An account with this phone number already exists. Please login instead.');
+                        } else {
+                            showError(`Registration failed: ${error.message}`);
+                        }
+                        return;
+                    }
+
+                    console.log('Registration successful:', data);
+                    showEpicCelebration('Account created successfully! Welcome to Kind Heart\'s Family!');
+
+                } catch (error) {
+                    console.error('Registration error:', error);
+                    showError('An error occurred during registration. Please try again.');
+                } finally {
+                    setLoading(false);
+                }
+            });
+
+            function checkPasswordStrength() {
+                const password = passwordInput.value;
+                const strengthIndicator = document.getElementById('passwordStrength');
+
+                if (password.length === 0) {
+                    strengthIndicator.textContent = '';
+                    return;
+                }
+
+                let strength = 0;
+                let feedback = '';
+
+                if (password.length >= 8) strength += 1;
+                if (/[a-z]/.test(password)) strength += 1;
+                if (/[A-Z]/.test(password)) strength += 1;
+                if (/[0-9]/.test(password)) strength += 1;
+                if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+
+                if (strength <= 2) {
+                    feedback = 'Weak password';
+                    strengthIndicator.className = 'password-strength strength-weak';
+                } else if (strength <= 3) {
+                    feedback = 'Medium strength password';
+                    strengthIndicator.className = 'password-strength strength-medium';
+                } else {
+                    feedback = 'Strong password';
+                    strengthIndicator.className = 'password-strength strength-strong';
+                }
+
+                strengthIndicator.textContent = feedback;
+            }
+
+            async function hashPassword(password, salt) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(password + salt);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+
+            function generateSalt() {
+                return 'salt_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+            }
+
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            }
+
+            function showSuccess(message) {
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+            }
+
+            function clearMessages() {
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+            }
+
+            function setLoading(isLoading) {
+                registerBtn.disabled = isLoading;
+                registerBtn.textContent = isLoading ? 'Creating Account...' : 'Create Volunteer Account';
+            }
+
+            // Epic celebration function for volunteer registration
+            function showEpicCelebration(message) {
+                console.log('🚀 Triggering EPIC volunteer registration celebration...');
+
+                const fullscreenCelebration = document.getElementById('fullscreen-celebration');
+
+                if (!fullscreenCelebration) {
+                    console.error('Full-screen celebration element not found!');
+                    showSuccess('Account created successfully! Redirecting to login...');
+                    setTimeout(() => {
+                        window.location.href = 'volunteer-login.html';
+                    }, 2000);
+                    return;
+                }
+
+                // Show full-screen celebration
+                fullscreenCelebration.classList.add('show');
+
+                console.log('🎉 EPIC Volunteer registration celebration displayed!');
+
+                // Hide celebration after 6 seconds and redirect to login
+                setTimeout(() => {
+                    fullscreenCelebration.classList.remove('show');
+                    console.log('🎊 Volunteer registration celebration completed');
+
+                    // Redirect to login page
+                    setTimeout(() => {
+                        window.location.href = 'volunteer-login.html';
+                    }, 500);
+
+                }, 6000);
+            }
+        });
+    </script>
+</body>
+</html>

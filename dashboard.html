@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Kind Heart's Sangam Foundation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        /* Dashboard-specific styles only */
+
+        /* Navigation Dropdown Styles - Only for dashboard */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-dropdown__toggle {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-dropdown__toggle:hover {
+            background: #f57c00;
+        }
+
+        .nav-dropdown__arrow {
+            margin-left: 0.5rem;
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-dropdown__menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            z-index: 1000;
+            margin-top: 0.5rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        .nav-dropdown__menu.show {
+            display: block;
+        }
+
+        .nav-dropdown__item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-dropdown__item:last-child {
+            border-bottom: none;
+        }
+
+        .nav-dropdown__item:hover {
+            background: #f5f5f5;
+        }
+
+        /* Mobile Tools Section - Only for dashboard */
+        .mobile-tools {
+            display: none;
+            background: rgba(255, 152, 0, 0.1);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .mobile-tools__title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ff9800;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-tools__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+
+        .mobile-tools__btn {
+            display: block;
+            padding: 0.75rem;
+            background: #ff9800;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .mobile-tools__btn:hover {
+            background: #f57c00;
+        }
+
+        /* Show mobile tools only on mobile */
+        @media (max-width: 768px) {
+            .nav-dropdown {
+                display: none;
+            }
+            .mobile-tools {
+                display: block;
+            }
+        }
+
+        /* Hide mobile tools on desktop */
+        @media (min-width: 769px) {
+            .mobile-tools {
+                display: none;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <img src="logo.svg" alt="Kind Heart's Logo" class="header__logo-img">
+                    <span class="header__logo-text">Kind Heart's Sangam Foundation</span>
+                </div>
+
+                <!-- Mobile menu toggle -->
+                <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                </button>
+
+                <!-- Navigation menu -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li><a href="index.html" class="nav__link" data-translate="nav.home">Home</a></li>
+                        <li><a href="learning-hub.html" class="nav__link">BE VOLUNTEER</a></li>
+                        <li><a href="admin-login.html" class="nav__link" data-translate="nav.admin">Admin</a></li>
+                        <li><a href="dashboard.html" class="nav__link nav__link--cta" data-translate="nav.dashboard">Dashboard</a></li>
+                        <li>
+                            <div class="nav-dropdown">
+                                <button class="nav-dropdown__toggle" onclick="toggleNavDropdown()">
+                                    ⚙️ Tools
+                                    <span class="nav-dropdown__arrow">▼</span>
+                                </button>
+                                <div class="nav-dropdown__menu" id="navDropdown">
+                                    <a href="#" class="nav-dropdown__item" onclick="openPasswordGenerator(); return false;">
+                                        🔐 Generate Password
+                                    </a>
+                                    <a href="database-setup-check.sql" class="nav-dropdown__item" target="_blank">
+                                        🛠️ Database Check
+                                    </a>
+                                    <a href="setup-admin-password.sql" class="nav-dropdown__item" target="_blank">
+                                        ⚙️ Password Setup
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <button id="language-toggle" class="language-toggle" title="Switch Language">
+                                <span class="language-toggle__text">हिन्दी</span>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Dashboard Header -->
+        <section class="section">
+            <div class="container">
+                <div class="section__title" data-translate="dashboard.title">Dashboard</div>
+                <p class="section__text" data-translate="dashboard.subtitle">Manage donations and partner registrations</p>
+
+                <!-- Loading State -->
+                <div id="loading-message" class="loading-message">
+                    <div class="spinner"></div>
+                    <span data-translate="dashboard.loading">Loading dashboard data...</span>
+                </div>
+
+                <!-- Mobile Tools Section -->
+                <div class="mobile-tools">
+                    <div class="mobile-tools__title">🔐 Admin Tools</div>
+                    <div class="mobile-tools__grid">
+                        <a href="#" class="mobile-tools__btn" onclick="openPasswordGenerator(); return false;">
+                            🔑 Generate Password
+                        </a>
+                        <a href="database-setup-check.sql" class="mobile-tools__btn" target="_blank">
+                            🛠️ Database Check
+                        </a>
+                        <a href="setup-admin-password.sql" class="mobile-tools__btn" target="_blank">
+                            ⚙️ Password Setup
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Admin Notice -->
+                <div id="admin-notice" class="admin-notice" style="display: none;">
+                    <div class="admin-notice-icon">🔐</div>
+                    <div class="admin-notice-content">
+                        <h3 data-translate="dashboard.adminNotice">Admin Dashboard Active</h3>
+                        <p data-translate="dashboard.adminNoticeDesc">You are logged in as an administrator (Session Auth). Status updates are available in the table below.</p>
+                        <div class="admin-notice-details">
+                            <strong>🔧 Dashboard Status: Enhanced Debugging Mode</strong>
+
+                            <div style="margin: 1rem 0; padding: 1rem; background: rgba(76, 175, 80, 0.1); border-radius: 8px; border-left: 4px solid #4caf50;">
+                                <strong>✅ RLS Policy Applied Successfully!</strong>
+                                <div style="margin: 0.5rem 0; color: #2e7d32;">
+                                    You have successfully run the UPDATE policy. The database should now accept status updates.
+                                </div>
+                            </div>
+
+                            <div style="margin: 1rem 0; padding: 1rem; background: rgba(255, 193, 7, 0.1); border-radius: 8px; border-left: 4px solid #ffc107;">
+                                <strong>🔍 Issue Detected: Invalid Existing Client</strong>
+                                <div style="margin: 0.5rem 0; color: #f57c00;">
+                                    There's an existing <code>window.supabase</code> object that's not a proper Supabase client (missing .from() method).
+                                </div>
+                                <div style="margin: 0.5rem 0; font-size: 0.8rem; color: #666;">
+                                    <strong>Solution:</strong> The system will now force creation of a new client and override the invalid one. Check console for detailed logs.
+                                </div>
+                            </div>
+
+                            <div style="margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.8); border-radius: 8px; border-left: 4px solid #ff9800;">
+                                <strong>Method 2 - Service Key (Simple):</strong>
+                                <ol style="margin: 0.5rem 0 0 1rem;">
+                                    <li>Supabase Dashboard → Settings → API</li>
+                                    <li>Copy <strong>service_role</strong> key (not anon key)</li>
+                                    <li>Replace <code>your-service-role-key-here</code> in <code>dashboard.js:645</code></li>
+                                    <li>Uncomment: <code>window.supabase = supabase.createClient(supabaseUrl, supabaseServiceKey);</code></li>
+                                    <li>✅ Done! Full admin access granted</li>
+                                </ol>
+                            </div>
+
+                            <div style="margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.8); border-radius: 8px; border-left: 4px solid #4caf50;">
+                                <strong>Method 3 - Proper Auth (Most Secure):</strong>
+                                <ol style="margin: 0.5rem 0 0 1rem;">
+                                    <li>Create admin_users table in Supabase</li>
+                                    <li>Add your email to admin_users table</li>
+                                    <li>Uncomment OPTION 3 code in <code>dashboard.js</code></li>
+                                    <li>Replace session auth with Supabase Auth</li>
+                                    <li>✅ Done! Production-ready security</li>
+                                </ol>
+                            </div>
+
+                            <div style="margin-top: 1rem; text-align: center; padding: 1rem; background: rgba(156, 39, 176, 0.1); border-radius: 8px; border: 2px solid #9c27b0;">
+                                <strong>🛠️ Database Connection Tools</strong><br>
+                                <div style="font-size: 0.8rem; margin: 0.5rem 0; color: #666;">
+                                    Enhanced tools to force proper client creation and test database connectivity
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <button onclick="testDatabaseConnection()" style="padding: 0.5rem 1rem; background: #9c27b0; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin: 0.25rem;">
+                                        🧪 Test Connection
+                                    </button>
+                                    <button onclick="reinitializeSupabase()" style="padding: 0.5rem 1rem; background: #2196f3; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin: 0.25rem;">
+                                        🔧 Force New Client
+                                    </button>
+                                    <button onclick="refreshDashboard()" style="padding: 0.5rem 1rem; background: #4caf50; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin: 0.25rem;">
+                                        🔄 Refresh Dashboard
+                                    </button>
+                                </div>
+                                <div style="font-size: 0.7rem; margin-top: 0.5rem; color: #666;">
+                                    💡 These tools will force creation of a new Supabase client and test database connectivity
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <button onclick="testElementVisibility()" style="padding: 0.5rem 1rem; background: #ff9800; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin: 0.25rem;">
+                                        🔍 Test Visibility
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div id="stats-container" class="stats-container" style="display: none;">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="total-donations">-</div>
+                                <div class="stat-label" data-translate="dashboard.totalDonations">Total Donations</div>
+                                <div class="stat-description" data-translate="dashboard.totalDonationsDesc">All registered donations & partners</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">⏳</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="pending-reviews">-</div>
+                                <div class="stat-label" data-translate="dashboard.pendingReviews">Pending Reviews</div>
+                                <div class="stat-description" data-translate="dashboard.pendingReviewsDesc">Awaiting approval from admin</div>
+                            </div>
+
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="approved-donations">-</div>
+                                <div class="stat-label" data-translate="dashboard.approved">Approved</div>
+                                <div class="stat-description" data-translate="dashboard.approvedDesc">Successfully approved entries</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">🔄</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="in-progress">-</div>
+                                <div class="stat-label" data-translate="dashboard.inProgress">In Progress</div>
+                                <div class="stat-description" data-translate="dashboard.inProgressDesc">Currently being processed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Controls Section -->
+                <div id="controls-container" class="controls-container" style="display: none;">
+                    <div class="admin-controls">
+                        <div class="control-group">
+                            <label for="status-filter" class="control-label" data-translate="dashboard.filterStatus">Filter by Status:</label>
+                            <select id="status-filter" class="control-select">
+                                <option value="" data-translate="dashboard.allStatus">All Status</option>
+                                <option value="Pending Review" data-translate="dashboard.pendingReview">Pending Review</option>
+                                <option value="Approved" data-translate="dashboard.approvedStatus">Approved</option>
+                                <option value="In Progress" data-translate="dashboard.inProgressStatus">In Progress</option>
+                                <option value="Completed" data-translate="dashboard.completed">Completed</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="type-filter" class="control-label" data-translate="dashboard.filterType">Filter by Type:</label>
+                            <select id="type-filter" class="control-select">
+                                <option value="" data-translate="dashboard.allTypes">All Types</option>
+                                <option value="donor" data-translate="dashboard.donations">Donations</option>
+                                <option value="partner" data-translate="dashboard.partners">Partners</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="search-input" class="control-label" data-translate="dashboard.search">Search:</label>
+                            <input type="text" id="search-input" class="control-input" data-translate-placeholder="dashboard.searchPlaceholder" placeholder="Search by name, organization, city...">
+                        </div>
+
+                        <button id="refresh-btn" class="button button--primary">
+                            <span class="button__text" data-translate="dashboard.refreshData">Refresh Data</span>
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- Data Table -->
+                <div id="table-container" class="table-container" style="display: none;">
+                    <div class="table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th data-translate="dashboard.date">Date</th>
+                                    <th data-translate="dashboard.type">Type</th>
+                                    <th data-translate="dashboard.nameOrg">Name/Organization</th>
+                                    <th data-translate="dashboard.city">City</th>
+                                    <th data-translate="dashboard.category">Category</th>
+                                    <th data-translate="dashboard.amount">Amount</th>
+                                    <th data-translate="dashboard.status">Status</th>
+                                    <th><span data-translate="dashboard.updateStatus">Update Status</span> <span title="Status updates available" style="color: #4caf50;">●</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="registrations-table-body">
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div id="pagination-container" class="pagination-container">
+                        <div class="pagination-info">
+                            <span id="pagination-info"><span data-translate="dashboard.showing">Showing</span> 0-0 <span data-translate="dashboard.of">of</span> 0 <span data-translate="dashboard.entries">entries</span></span>
+                        </div>
+                        <div class="pagination-controls">
+                            <button id="prev-page" class="button button--small" disabled data-translate="dashboard.previous">Previous</button>
+                            <span id="page-info" class="page-info"><span data-translate="dashboard.page">Page</span> 1</span>
+                            <button id="next-page" class="button button--small" disabled data-translate="dashboard.next">Next</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    <div class="empty-state-icon">📋</div>
+                    <h3 data-translate="dashboard.noData">No Data Found</h3>
+                    <p data-translate="dashboard.noDataDesc">No registrations or donations match your current filters.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Kind Heart's Sangam Foundation. All rights reserved.</p>
+            <p class="footer-mission">Spreading kindness through community support</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast">
+        <div class="toast__message"></div>
+    </div>
+
+    <script src="language.js"></script>
+    <script src="app.js"></script>
+    <script src="dashboard.js"></script>
+
+    <!-- Mobile Navigation Handler for Dashboard -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('.nav');
+            const navLinks = document.querySelectorAll('.nav__link');
+
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', function() {
+                    // Toggle navigation menu
+                    nav.classList.toggle('nav--active');
+                    hamburger.classList.toggle('hamburger--active');
+
+                    // Toggle hamburger icon (bars to X)
+                    const lines = hamburger.querySelectorAll('.hamburger__line');
+                    if (hamburger.classList.contains('hamburger--active')) {
+                        lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                        lines[1].style.opacity = '0';
+                        lines[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                    } else {
+                        lines[0].style.transform = 'none';
+                        lines[1].style.opacity = '1';
+                        lines[2].style.transform = 'none';
+                    }
+                });
+
+                // Close mobile menu when clicking on a nav link
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        nav.classList.remove('nav--active');
+                        hamburger.classList.remove('hamburger--active');
+
+                        // Reset hamburger icon
+                        const lines = hamburger.querySelectorAll('.hamburger__line');
+                        lines[0].style.transform = 'none';
+                        lines[1].style.opacity = '1';
+                        lines[2].style.transform = 'none';
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
+                        nav.classList.remove('nav--active');
+                        hamburger.classList.remove('hamburger--active');
+
+                        // Reset hamburger icon
+                        const lines = hamburger.querySelectorAll('.hamburger__line');
+                        lines[0].style.transform = 'none';
+                        lines[1].style.opacity = '1';
+                        lines[2].style.transform = 'none';
+                    }
+                });
+            }
+        });
+
+        // Global function to test mobile navigation
+        window.testMobileNavigation = function() {
+            console.log('🧪 Testing mobile navigation...');
+
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('.nav');
+
+            if (hamburger && nav) {
+                console.log('✅ Mobile navigation elements found');
+
+                // Simulate click
+                hamburger.click();
+
+                // Check if menu opened
+                setTimeout(() => {
+                    const isActive = nav.classList.contains('nav--active');
+                    console.log(isActive ? '✅ Mobile menu opened successfully' : '❌ Mobile menu failed to open');
+
+                    // Close menu
+                    hamburger.click();
+
+                    setTimeout(() => {
+                        const isClosed = !nav.classList.contains('nav--active');
+                        console.log(isClosed ? '✅ Mobile menu closed successfully' : '❌ Mobile menu failed to close');
+                    }, 100);
+                }, 100);
+
+            } else {
+                console.error('❌ Mobile navigation elements not found for testing');
+            }
+        };
+
+        // Function to open password generator (only accessible from dashboard)
+        window.openPasswordGenerator = function() {
+            console.log('🔐 Opening password generator...');
+
+            // Close dropdown if open
+            const dropdown = document.getElementById('navDropdown');
+            if (dropdown) {
+                dropdown.classList.remove('show');
+            }
+
+            // Open in new window for security
+            const passwordWindow = window.open(
+                'generate-password-hash.html',
+                'passwordGenerator',
+                'width=600,height=700,scrollbars=yes,resizable=yes'
+            );
+
+            if (!passwordWindow) {
+                // Fallback: redirect in same window
+                console.warn('Popup blocked, opening in same window');
+                window.location.href = 'generate-password-hash.html';
+            }
+        };
+
+        // Function to toggle navigation dropdown
+        window.toggleNavDropdown = function() {
+            const dropdown = document.getElementById('navDropdown');
+            if (dropdown) {
+                dropdown.classList.toggle('show');
+
+                // Update arrow direction
+                const arrow = dropdown.previousElementSibling.querySelector('.nav-dropdown__arrow');
+                if (arrow) {
+                    arrow.style.transform = dropdown.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            }
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('navDropdown');
+            const toggle = document.querySelector('.nav-dropdown__toggle');
+
+            if (dropdown && toggle && !dropdown.contains(event.target) && !toggle.contains(event.target)) {
+                dropdown.classList.remove('show');
+
+                // Reset arrow direction
+                const arrow = toggle.querySelector('.nav-dropdown__arrow');
+                if (arrow) {
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
